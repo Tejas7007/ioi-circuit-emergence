@@ -1,128 +1,99 @@
-======================================================================
 SYNTHETIC IOI EXAMPLES (Wang et al. 2022 templates)
-======================================================================
+============================================================
 
-  IO=Mary, S=John
-  Prompt: "When Mary and John went to the store, John gave a drink to"
-  Model should predict: Mary
+IO=Mary, S=John
+Prompt: "When Mary and John went to the store, John gave a drink to"
+Model should predict: Mary
 
-  IO=Alice, S=Bob
-  Prompt: "When Alice and Bob had a meeting, Bob handed the report to"
-  Model should predict: Alice
+IO=Alice, S=Bob
+Prompt: "When Alice and Bob had a meeting, Bob handed the report to"
+Model should predict: Alice
 
-  IO=Emma, S=David
-  Prompt: "When Emma and David went to the park, David showed the painting to"
-  Model should predict: Emma
+IO=Emma, S=David
+Prompt: "When Emma and David went to the park, David showed the painting to"
+Model should predict: Emma
 
-  IO=Sarah, S=Tom
-  Prompt: "After Sarah and Tom finished dinner, Tom passed the bill to"
-  Model should predict: Sarah
 
-  IO=Laura, S=Mike
-  Prompt: "When Laura and Mike went to school, Mike sent a letter to"
-  Model should predict: Laura
-
-======================================================================
 NATURAL IOI EXAMPLES (from The Pile, 500 total)
-======================================================================
+============================================================
 
-  IO=Kim, S=Lee
-  Prompt: "premises and conduct an inspection. Kim filed an amended complaint in October 2016, adding Lee as a defendant. The amended pleading was substantially similar to the original complaint, but alleged Yoo"
-  Model should predict: Kim
+IO=Kim, S=Lee
+Prompt: "premises and conduct an inspection. Kim filed an amended complaint in October 2016, adding Lee as a defendant. The amended pleading was substantially similar to the original complaint, but alleged Yoo"
+Model should predict: Kim
 
-  IO=Charlie, S=Gary
-  Prompt: "Ham Hamburger was overheard, by Charlie Strang, speaking to Gary about a job. Now, about this same time I had sent an outline to"
-  Model should predict: Charlie
+IO=Charlie, S=Gary
+Prompt: "Ham Hamburger was overheard, by Charlie Strang, speaking to Gary about a job. Now, about this same time I had sent an outline to"
+Model should predict: Charlie
 
-  IO=Jane, S=Diana
-  Prompt: "an arranged marriage. He and Jane gave to Meredith Viera a tin Charles and Diana wedding tray, which Meredith then gave back to"
-  Model should predict: Jane
+IO=Jane, S=Diana
+Prompt: "an arranged marriage. He and Jane gave to Meredith Viera a tin Charles and Diana wedding tray, which Meredith then gave back to"
+Model should predict: Jane
 
-  IO=Leon, S=Rachel
-  Prompt: ""Glad to meet you, Rachel," Leon said to me. "I'm Stephanie," I told him. He laughed. "Well, glad to meet _you_ , Stephanie. And glad to meet you, too, Rachel." Leon lifted the lid off the pot on the "
-  Model should predict: Leon
+IO=Leon, S=Rachel
+Prompt: ""Glad to meet you, Rachel," Leon said to me. "I'm Stephanie," I told him. He laughed. "Well, glad to meet _you_ , Stephanie. And glad to meet you, too, Rachel." Leon lifted the lid off the pot on the "
+Model should predict: Leon
 
-  IO=Ron, S=Keith
-  Prompt: "that appointment few months later, Ron and his wife Raychel were told that Keith had Friedreich’s ataxia (FA), a condition they’d never heard of and couldn’t even spell. When they asked what they coul"
-  Model should predict: Ron
+IO=Ron, S=Keith
+Prompt: "that appointment few months later, Ron and his wife Raychel were told that Keith had Friedreich’s ataxia (FA), a condition they’d never heard of and couldn’t even spell. When they asked what they coul"
+Model should predict: Ron
 
-  IO=Paul, S=Keith
-  Prompt: "to a triple bypass for Paul; the next time was when Keith gave one of his kidneys to"
-  Model should predict: Paul
+IO=Paul, S=Keith
+Prompt: "to a triple bypass for Paul; the next time was when Keith gave one of his kidneys to"
+Model should predict: Paul
 
-  IO=Tony, S=Steve
-  Prompt: "after leaving his shield with Tony. Correction, the shield belonged to Howard Stark. Steve just gave it back to"
-  Model should predict: Tony
+IO=Tony, S=Steve
+Prompt: "after leaving his shield with Tony. Correction, the shield belonged to Howard Stark. Steve just gave it back to"
+Model should predict: Tony
 
-  IO=Marie, S=David
-  Prompt: "attending school in Manhattan before Marie removed her from the institution. David Lee Nong’s restaurant David, who was arrested as a material witness but wasn’t charged, testified that it was the cus"
-  Model should predict: Marie
+IO=Marie, S=David
+Prompt: "attending school in Manhattan before Marie removed her from the institution. David Lee Nong’s restaurant David, who was arrested as a material witness but wasn’t charged, testified that it was the cus"
+Model should predict: Marie
 
-  IO=Bill, S=James
-  Prompt: "discovered that I'd worked for Bill James for a few years, during the early 1990s. Henry asked me if I were still touch with Bill. I said that I was. Henry asked me for Bill's phone number. I gave it "
-  Model should predict: Bill
+IO=Bill, S=James
+Prompt: "discovered that I'd worked for Bill James for a few years, during the early 1990s. Henry asked me if I were still touch with Bill. I said that I was. Henry asked me for Bill's phone number. I gave it "
+Model should predict: Bill
 
-  IO=Mary, S=Anna
-  Prompt: "story of the parentage of Mary and of her birth, as found in icons, comes largely from the non-biblical Protoevangelion of James. We found it presents Joachim and Anna as childless, but both prayed an"
-  Model should predict: Mary
+IO=Mary, S=Anna
+Prompt: "story of the parentage of Mary and of her birth, as found in icons, comes largely from the non-biblical Protoevangelion of James. We found it presents Joachim and Anna as childless, but both prayed an"
+Model should predict: Mary
 
-  IO=Brad, S=Jake
-  Prompt: "other for their stupid answers. Brad, trying to ignore the stupidity, checks to see if she has any mail. That reminds Mr. Ernst to ask Jake what was in the letter that he got, because that’s totally M"
-  Model should predict: Brad
+IO=Brad, S=Jake
+Prompt: "other for their stupid answers. Brad, trying to ignore the stupidity, checks to see if she has any mail. That reminds Mr. Ernst to ask Jake what was in the letter that he got, because that’s totally M"
+Model should predict: Brad
 
-  IO=Brad, S=Jake
-  Prompt: "other for their stupid answers. Brad, trying to ignore the stupidity, checks to see if she has any mail. That reminds Mr. Ernst to ask Jake what was in the letter that he got, because that’s totally M"
-  Model should predict: Brad
+IO=Brad, S=Jake
+Prompt: "other for their stupid answers. Brad, trying to ignore the stupidity, checks to see if she has any mail. That reminds Mr. Ernst to ask Jake what was in the letter that he got, because that’s totally M"
+Model should predict: Brad
 
-  IO=Steve, S=Henry
-  Prompt: "regarding my not staying with Steve Cochran, and I felt I had to clean the slate with him. I told Henry that I needed to go to"
-  Model should predict: Steve
+IO=Steve, S=Henry
+Prompt: "regarding my not staying with Steve Cochran, and I felt I had to clean the slate with him. I told Henry that I needed to go to"
+Model should predict: Steve
 
-  IO=Elena, S=Kevin
-  Prompt: "mastering of Kevin by Foul. Elena used the Earthblood to compell Kevin to defeat Foul. It was obvious to me he went to Foul's Creche and attempted to fight Foul and was handed his hat. Kevin comes bac"
-  Model should predict: Elena
+IO=Elena, S=Kevin
+Prompt: "mastering of Kevin by Foul. Elena used the Earthblood to compell Kevin to defeat Foul. It was obvious to me he went to Foul's Creche and attempted to fight Foul and was handed his hat. Kevin comes bac"
+Model should predict: Elena
 
-  IO=Elena, S=Kevin
-  Prompt: "finally died, and later became Elena Foul-Wife._________________Becoming Elijah has been released from Calderwood Books! Korik's FateIt cannot now be set aside, nor passed on... There was no remote ma"
-  Model should predict: Elena
+IO=Elena, S=Kevin
+Prompt: "finally died, and later became Elena Foul-Wife._________________Becoming Elijah has been released from Calderwood Books! Korik's FateIt cannot now be set aside, nor passed on... There was no remote ma"
+Model should predict: Elena
 
-  IO=Karen, S=Owen
-  Prompt: "sister die," Owen said. "Sit," Karen ordered Matthew. Matthew reluctantly sat in a chair at the table. Then Owen cut off some rope with the knife, gave it to"
-  Model should predict: Karen
+IO=Karen, S=Owen
+Prompt: "sister die," Owen said. "Sit," Karen ordered Matthew. Matthew reluctantly sat in a chair at the table. Then Owen cut off some rope with the knife, gave it to"
+Model should predict: Karen
 
-  IO=David, S=Aaron
-  Prompt: "new graduate cutting the cake, David talked the adults into letting his generation take Aaron out for a celebratory milkshake. All six cousins jumped into Aaron's uncle's giant minivan and drove twent"
-  Model should predict: David
+IO=David, S=Aaron
+Prompt: "new graduate cutting the cake, David talked the adults into letting his generation take Aaron out for a celebratory milkshake. All six cousins jumped into Aaron's uncle's giant minivan and drove twent"
+Model should predict: David
 
-  IO=Ryan, S=John
-  Prompt: "application for temporary support for Ryan. Robin resisted the application and affirmatively alleged John had not assisted her with the college expenses of Aaron. The matter came on for hearing. Neith"
-  Model should predict: Ryan
+IO=Ryan, S=John
+Prompt: "application for temporary support for Ryan. Robin resisted the application and affirmatively alleged John had not assisted her with the college expenses of Aaron. The matter came on for hearing. Neith"
+Model should predict: Ryan
 
-  IO=Peter, S=Paul
-  Prompt: "anyone who was not circumcised. Peter became afraid that his association with Gentiles would ruin his reputation and effectiveness with the Jewish community. Peter let himself get into a frame of thin"
-  Model should predict: Peter
+IO=Peter, S=Paul
+Prompt: "anyone who was not circumcised. Peter became afraid that his association with Gentiles would ruin his reputation and effectiveness with the Jewish community. Peter let himself get into a frame of thin"
+Model should predict: Peter
 
-  IO=James, S=Laura
-  Prompt: "that had been given to James. Doctor Goodwin’s “next patient” is the same type of bird that scratched and pecked at Laura Palmer before she was murdered. Within the evidence bin on Doctor Goodwin’s de"
-  Model should predict: James
+IO=James, S=Laura
+Prompt: "that had been given to James. Doctor Goodwin’s “next patient” is the same type of bird that scratched and pecked at Laura Palmer before she was murdered. Within the evidence bin on Doctor Goodwin’s de"
+Model should predict: James
 
-======================================================================
-KEY DIFFERENCES
-======================================================================
-
-Synthetic: Short, clean, predictable structure. Both names appear once
-  each, subject repeats. Template: "When [IO] and [S] went to the
-  [place], [S] [verb] a [object] to ___"
-
-Natural: Variable length, messy context, real web text. Names may appear
-  in complex sentences with other names, titles, locations. Extracted from
-  The Pile (Pythia training data) by scanning 13.9M texts for transfer
-  verbs followed by "to [Name]" with both names in context.
-
-Pile prompt stats:
-  Count: 500
-  Mean length: 51 words
-  Min length: 11 words
-  Max length: 72 words
-  Unique IO names: 104
-  Unique S names: 106
