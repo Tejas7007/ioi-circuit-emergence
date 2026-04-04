@@ -66,12 +66,6 @@
     "full_text": "know about the letter. It turns out that Mr. Ernst gave it to Melody, who gave it to Brad, who gave it"
   },
   {
-    "prompt": "other for their stupid answers. Brad, trying to ignore the stupidity, checks to see if she has any mail. That reminds Mr. Ernst to ask Jake what was in the letter that he got, because that\u2019s totally Mr. Ernst\u2019s business. Jake doesn\u2019t know about the letter. It turns out that Mr. Ernst gave it to Melody, who gave it to",
-    "io_name": "Brad",
-    "s_name": "Jake",
-    "full_text": "turns out that Mr. Ernst gave it to Melody, who gave it to Brad, who gave it"
-  },
-  {
     "prompt": "regarding my not staying with Steve Cochran, and I felt I had to clean the slate with him. I told Henry that I needed to go to",
     "io_name": "Steve",
     "s_name": "Henry",
@@ -420,12 +414,6 @@
     "full_text": "at Island in \u201878. That was just the stuff I gave Chris. Chris probably gave it to Brian. So you gave"
   },
   {
-    "prompt": "was Antilles, 1978, produced by Brian Eno. So what was your involvement in that? Well I started at Island in \u201878. That was just the stuff I gave Chris. Chris probably gave it to",
-    "io_name": "Brian",
-    "s_name": "Chris",
-    "full_text": "That was just the stuff I gave Chris. Chris probably gave it to Brian. So you gave"
-  },
-  {
     "prompt": "just the stuff I gave Chris. Chris probably gave it to Brian. So you gave that to",
     "io_name": "Chris",
     "s_name": "Brian",
@@ -744,12 +732,6 @@
     "full_text": "Harry was supposed to fly in the Spitfire himself but gave up his seat to Neil, after another Spitfire"
   },
   {
-    "prompt": "with retired RAF pilot Tom Neil, 95, a Battle of Britain vet, after Neil landed in a Spitfire following an historic 75th anniversary flypast. Harry was supposed to fly in the Spitfire himself but gave up his seat to",
-    "io_name": "Neil",
-    "s_name": "Harry",
-    "full_text": "Harry was supposed to fly in the Spitfire himself but gave up his seat to Neil, after another Spitfire"
-  },
-  {
     "prompt": "then? JW -----Original Message----- From: John Watson [mailto:john.watson@pdq.net] Sent: Monday, August 27, 2001 9:55 AM To: Hill, Jane Subject: RE: Dinner Invite Pencil in the 3d and the 17th. We'll narrow it down to one or the other shortly. Looking forward to it! John -----Original Message----- From: Hill, Jane [mailto:JHill@tmh.tmc.edu] Sent: Friday, August 24, 2001 12:16 PM To:",
     "io_name": "John",
     "s_name": "Jane",
@@ -814,12 +796,6 @@
     "io_name": "Don",
     "s_name": "Frank",
     "full_text": "the insurance proceeds to Don Frank Co.'s debt but merely paid the money over to Don Frank Co. \"If"
-  },
-  {
-    "prompt": "applied the insurance proceeds to Don Frank Co.'s debt it is clear that Joyce Duty would likewise be subrogated to Bank's rights in the debt. \"Bank did not apply the insurance proceeds to Don Frank Co.'s debt but merely paid the money over to",
-    "io_name": "Don",
-    "s_name": "Frank",
-    "full_text": "the insurance proceeds to Don Frank Co.'s debt but merely paid the money over to Don Frank Co.\" *1315"
   },
   {
     "prompt": "time of trial, he paid Ruth close to a million dollars. He estimated that the value of the DPH Trust at the time of trial was $1.2 or $1.3 million. The record shows that all investments Robert made on behalf of the Trust, with the exception of the Bighorn investment, were profitable. Additionally, Robert sent emails to",
@@ -2700,12 +2676,6 @@
     "full_text": "Ben H 12. Finally, two more games to report. Mike brought Money and taught the game to Ben H and Alex."
   },
   {
-    "prompt": "Matt and Mike. Scores were Ben H 10, Matt 7, Mike 4. By this time Alex had arrived, and another Splendor game broke out, this being the closet of the four played, three points separating the entire field. Scores were Mike 15, Alex and Matt 13, Ben H 12. Finally, two more games to report. Mike brought Money and taught the game to",
-    "io_name": "Ben",
-    "s_name": "Matt",
-    "full_text": "Finally, two more games to report. Mike brought Money and taught the game to Ben H and Alex."
-  },
-  {
     "prompt": "2014. Daniel Fierro worked for Ian Calderon at that time who was an Assembly man. Daniel did not mention anything about the incident when it occurred but in January he told it to",
     "io_name": "Ian",
     "s_name": "Daniel",
@@ -2974,12 +2944,6 @@
     "io_name": "Karen",
     "s_name": "Peter",
     "full_text": "photos afterward. Before heading over to the dance studio, I paid a surprise visit to Karen in her office."
-  },
-  {
-    "prompt": "take the blame for him. Joe Quin Villarreal told me that he was the shooter because he was bragging saying that John Phillip Aleman and Ruben Maddy Aleman just watched, but Ruben Maddy Aleman told me that he was the one who gave the gun to",
-    "io_name": "Joe",
-    "s_name": "John",
-    "full_text": "Maddy Aleman told me that he was the one who gave the gun to Joe Quin Villarreal and"
   },
   {
     "prompt": "3 - monetary consideration 30. Alice supplies goods to Bob in return for $1,000. Bob has not yet paid the money to",
