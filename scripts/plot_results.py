@@ -10,11 +10,11 @@ import os
 os.makedirs('figures', exist_ok=True)
 
 # Load Part 1 results
-with open('results/dev_interp_EleutherAI_pythia-160m-deduped.json') as f:
+with open('results/part1_component_emergence.json') as f:
     part1 = json.load(f)
 
 # Load Part 2 results
-with open('results/dev_interp_grokking_real_pile_500.json') as f:
+with open('results/part2_pile_vs_synthetic.json') as f:
     part2 = json.load(f)
 
 steps1 = [r['step'] for r in part1['results']]
