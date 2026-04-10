@@ -1,0 +1,148 @@
+{
+  "EleutherAI/pythia-410m-deduped_step1000": {
+    "baseline_acc": 0.40666666626930237,
+    "baseline_ld": -0.24777577817440033,
+    "ablations": {
+      "L5H11": {
+        "acc": 0.4033333361148834,
+        "diff": -0.0033333301544189453,
+        "effect": "NEUTRAL"
+      }
+    }
+  },
+  "EleutherAI/pythia-410m-deduped_step2000": {
+    "baseline_acc": 0.41999998688697815,
+    "baseline_ld": -0.3081435263156891,
+    "ablations": {
+      "L5H11": {
+        "acc": 0.4300000071525574,
+        "diff": 0.010000020265579224,
+        "effect": "HELPS"
+      }
+    }
+  },
+  "EleutherAI/pythia-410m-deduped_step3000": {
+    "baseline_acc": 0.8766666650772095,
+    "baseline_ld": 2.099109172821045,
+    "ablations": {
+      "L5H11": {
+        "acc": 0.9300000071525574,
+        "diff": 0.0533333420753479,
+        "effect": "HELPS"
+      },
+      "L5H2_dominant": {
+        "acc": 0.70333331823349,
+        "diff": -0.17333334684371948
+      }
+    }
+  },
+  "EleutherAI/pythia-1b-deduped_step1000": {
+    "baseline_acc": 0.38333332538604736,
+    "baseline_ld": -0.5608609914779663,
+    "ablations": {
+      "L0H0": {
+        "acc": 0.3733333349227905,
+        "diff": -0.009999990463256836,
+        "effect": "NEUTRAL"
+      },
+      "L0H4": {
+        "acc": 0.38333332538604736,
+        "diff": 0.0,
+        "effect": "NEUTRAL"
+      },
+      "L0H5": {
+        "acc": 0.3700000047683716,
+        "diff": -0.013333320617675781,
+        "effect": "HURTS"
+      },
+      "L0H6": {
+        "acc": 0.3766666650772095,
+        "diff": -0.006666660308837891,
+        "effect": "NEUTRAL"
+      },
+      "L1H3": {
+        "acc": 0.3566666543483734,
+        "diff": -0.02666667103767395,
+        "effect": "HURTS"
+      },
+      "ALL_early": {
+        "acc": 0.30000001192092896,
+        "diff": -0.08333331346511841
+      }
+    }
+  },
+  "EleutherAI/pythia-1b-deduped_step2000": {
+    "baseline_acc": 0.6733333468437195,
+    "baseline_ld": 0.968066930770874,
+    "ablations": {
+      "L0H0": {
+        "acc": 0.6666666865348816,
+        "diff": -0.006666660308837891,
+        "effect": "NEUTRAL"
+      },
+      "L0H4": {
+        "acc": 0.6733333468437195,
+        "diff": 0.0,
+        "effect": "NEUTRAL"
+      },
+      "L0H5": {
+        "acc": 0.7233333587646484,
+        "diff": 0.050000011920928955,
+        "effect": "HELPS"
+      },
+      "L0H6": {
+        "acc": 0.6766666769981384,
+        "diff": 0.0033333301544189453,
+        "effect": "NEUTRAL"
+      },
+      "L1H3": {
+        "acc": 0.6666666865348816,
+        "diff": -0.006666660308837891,
+        "effect": "NEUTRAL"
+      },
+      "ALL_early": {
+        "acc": 0.6933333277702332,
+        "diff": 0.019999980926513672
+      }
+    }
+  },
+  "EleutherAI/pythia-1b-deduped_step3000": {
+    "baseline_acc": 0.9233333468437195,
+    "baseline_ld": 2.66280198097229,
+    "ablations": {
+      "L0H0": {
+        "acc": 0.9133333563804626,
+        "diff": -0.009999990463256836,
+        "effect": "NEUTRAL"
+      },
+      "L0H4": {
+        "acc": 0.9233333468437195,
+        "diff": 0.0,
+        "effect": "NEUTRAL"
+      },
+      "L0H5": {
+        "acc": 0.9166666865348816,
+        "diff": -0.006666660308837891,
+        "effect": "NEUTRAL"
+      },
+      "L0H6": {
+        "acc": 0.9200000166893005,
+        "diff": -0.0033333301544189453,
+        "effect": "NEUTRAL"
+      },
+      "L1H3": {
+        "acc": 0.9233333468437195,
+        "diff": 0.0,
+        "effect": "NEUTRAL"
+      },
+      "L8H7_dominant": {
+        "acc": 0.6633333563804626,
+        "diff": -0.25999999046325684
+      },
+      "ALL_early": {
+        "acc": 0.9300000071525574,
+        "diff": 0.006666660308837891
+      }
+    }
+  }
+}
