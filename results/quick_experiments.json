@@ -1,0 +1,27 @@
+{
+  "exp1_ablate_final": {
+    "model": "160m",
+    "step": 143000,
+    "baseline_acc": 1.0,
+    "ablate_L8H9_acc": 0.8166666626930237,
+    "ablate_L8H9_diff": -0.1527777777777778,
+    "compare_step3000_diff": -0.167
+  },
+  "exp2_prefix_robustness": {
+    "model": "160m",
+    "step": 143000,
+    "n_examples": 288,
+    "full_prompt_acc": 0.65625,
+    "stripped_prefix_acc": 0.5034722222222222,
+    "difference": -0.1527777777777778
+  },
+  "exp3_general_baseline": {
+    "model": "160m",
+    "step": 143000,
+    "n_examples": 100,
+    "general_next_token_acc": 0.29196683526039124,
+    "io_mean_rank": 20.26,
+    "io_median_rank": 3.0,
+    "ioi_accuracy": 0.65625
+  }
+}
