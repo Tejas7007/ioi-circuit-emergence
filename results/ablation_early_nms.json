@@ -1,0 +1,76 @@
+{
+  "model": "EleutherAI/pythia-160m-deduped",
+  "step_1000": {
+    "baseline_acc": 0.407,
+    "ablations": {
+      "L0H5": {
+        "acc": 0.393,
+        "diff": -0.013,
+        "effect": "HURTS"
+      },
+      "L0H6": {
+        "acc": 0.387,
+        "diff": -0.02,
+        "effect": "HURTS"
+      },
+      "L0H10": {
+        "acc": 0.383,
+        "diff": -0.023,
+        "effect": "HURTS"
+      },
+      "L1H3": {
+        "acc": 0.4,
+        "diff": -0.007,
+        "effect": "NEUTRAL"
+      },
+      "L1H7": {
+        "acc": 0.383,
+        "diff": -0.023,
+        "effect": "HURTS"
+      },
+      "ALL_5": {
+        "acc": 0.357,
+        "diff": -0.05
+      },
+      "L8H9_control": {
+        "acc": 0.403,
+        "diff": -0.003
+      }
+    }
+  },
+  "step_3000": {
+    "baseline_acc": 0.613,
+    "ablations": {
+      "L0H5": {
+        "acc": 0.64,
+        "diff": 0.027,
+        "effect": "HELPS"
+      },
+      "L0H6": {
+        "acc": 0.613,
+        "diff": 0.0,
+        "effect": "NEUTRAL"
+      },
+      "L0H10": {
+        "acc": 0.73,
+        "diff": 0.117,
+        "effect": "HELPS"
+      },
+      "L1H3": {
+        "acc": 0.61,
+        "diff": -0.003,
+        "effect": "NEUTRAL"
+      },
+      "L1H7": {
+        "acc": 0.597,
+        "diff": -0.017,
+        "effect": "HURTS"
+      },
+      "L8H9": {
+        "acc": 0.447,
+        "diff": -0.167,
+        "effect": "HURTS"
+      }
+    }
+  }
+}
