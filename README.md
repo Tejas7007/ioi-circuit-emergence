@@ -10,11 +10,12 @@
 
 ## TL;DR
 
-We track IOI circuit emergence across Pythia-160M, 410M, and 1B. Three main findings:
+We track IOI circuit emergence across Pythia-160M, 410M, and 1B. Four main findings:
 
 1. **A non-monotonic accuracy dip at step 1000 replicates across all three scales** — but the "dip" reflects the model predicting function words (like "the") rather than systematically choosing the wrong name.
 2. **Heads classified as name-movers during the dip have near-uniform attention patterns** and write essentially zero into the output direction. Standard ablation-based classification can be misleading during early training.
-3. **The dominant head in Pythia-160M (L8H9) implements IOI through S-suppression rather than IO-copying** — it attends 92% to S2 and writes a strong negative S signal. This mechanism does NOT universally generalize: Pythia-1B's L11H0 shows a similar but weaker pattern (60% to S2), while Pythia-410M's L4H6 uses a different mechanism entirely.
+3. **The dominant head in Pythia-160M (L8H9) implements IOI through S-suppression as the output of a multi-hop pipeline.** L8H9 attends 92% to S2 (with low variance across examples) and reads a processed representation prepared by earlier duplicate-token heads — most strongly L1H8, which attends 91% from S2 → S1. L8H9 then writes a strong negative S signal (−6.25 at step 143k) into the final-position residual stream.
+4. **This mechanism does NOT universally generalize.** Pythia-1B's L11H0 shows a similar but weaker pattern (60% to S2), while Pythia-410M's L4H6 uses a different mechanism entirely, attending 57% to the final token position.
 
 ---
 
@@ -97,23 +98,43 @@ These heads are not mechanistically doing name-moving. They pass our ablation-ba
 
 ---
 
-## Finding 5: L8H9 Suppresses S Rather Than Copies IO
+## Finding 5: L8H9 Suppresses S — As the Output of a Multi-Hop Pipeline
 
-In Pythia-160M at step 143000, L8H9 is the dominant head (−18.3pp when ablated). Its mechanism:
+In Pythia-160M at step 143000, L8H9 is the dominant head (−18.3pp when ablated). Its mechanism has two parts: what it attends to, and what it writes.
 
-**Attention development:**
-- Step 1000: uniform (~4-8% across positions)
-- Step 3000: **86.9% to S2**
-- Step 143000: **92.2% to S2**
+**Attention is remarkably consistent — not an averaging artifact:**
 
-**Output projection (what it writes into the residual stream at the final position):**
+Across 300 prompts, L8H9's attention to S2 has:
+- Mean: 0.929 (std: 0.048)
+- Min: 0.72, Max: 0.99
+- **97% of examples have >80% attention to S2**
+- **0% of examples have <50% attention to S2**
+
+The 92% mean is not hiding bimodal behavior — essentially every example shows strong S2 attention.
+
+![Figure 11](figures/fig11_l8h9_distribution.png)
+
+**L8H9 is not reading "raw S" — it reads a processed S2 representation prepared by earlier heads.**
+
+Scanning all heads in layers 0–7, we find a clear duplicate-token pipeline feeding into the S2 position. L1H8 attends from S2 back to S1 with weight **0.914**, writing "this token is a repeat" at S2. Several other heads (L6H10=0.45, L2H3=0.42, L3H3=0.41) provide additional processing.
+
+![Figure 12](figures/fig12_multihop_pipeline.png)
+
+**The full mechanism:**
+
+1. **L1H8** (layer 1) attends S2 → S1, writes duplicate-token signal at S2
+2. **Other duplicate-token heads** (L6H10, L2H3, L3H3) add further processing at S2
+3. **L8H9** (layer 8) attends final → S2, reads the processed S-representation
+4. **L8H9 writes strong negative S** into the final-position residual stream
+
+**Output projection (what L8H9 writes):**
 - Step 1000: IO=−0.013, S=−0.015 (writes essentially nothing)
-- Step 3000: IO=−0.419, S=**−1.405** (suppresses both, S 3x more)
+- Step 3000: IO=−0.419, S=**−1.405** (suppresses both, S 3× more)
 - Step 143000: IO=−0.577, S=**−6.246** (massively suppresses S)
 
-The net effect (IO − S projection) grows from +0.002 to +0.986 to **+5.669** across training.
+The net S-suppression (IO − S projection) grows from +0.002 → +0.986 → **+5.669** across training. By suppressing S in the logits, IO wins by default.
 
-**L8H9 does NOT copy IO.** It reads S2 (the repeated subject token) and writes a strong negative S signal into the residual stream. By suppressing S in the logits, IO wins by default. This is the opposite mechanism from what Wang et al. (2022) describe for name-movers in GPT-2 Small.
+**L8H9 does NOT copy IO** the way Wang et al. (2022) describe name-movers. It implements IOI as the output stage of a multi-hop S-suppression pipeline. Same behavioral effect (IO wins), fundamentally different mechanism.
 
 ![Figure 7](figures/fig7_l8h9_attention_development.png)
 
@@ -187,10 +208,10 @@ In contrast to IOI's non-monotonic dynamics, induction heads emerge **monotonica
 ## Limitations
 
 1. **"In Pythia" not "in general."** Wang et al. studied GPT-2 Small. Our findings describe Pythia-specific circuit development. The discrepancy between L8H9's S2-attending mechanism and Wang et al.'s description may reflect architectural or training-data differences.
-2. **Averaging masks individual variation.** We report means across 200-300 examples. Individual prompts may show bimodal behavior we don't capture.
-3. **Final-token attention only.** We measured attention FROM the final position. Multi-hop attention patterns within the circuit are not analyzed.
-4. **Component counting with tau=0.02 is noisy.** We attempted to track name-mover, S-inhibition, duplicate-token, previous-token, and negative-name-mover populations. Results produce 49 "negative name movers" at 100% accuracy — clearly too loose a threshold. We report counts as supplementary only.
-5. **Three checkpoints in the transition zone (512, 1000, 2000) is low resolution.** Dense checkpoints via retraining would clarify the mechanism's formation step-by-step.
+2. **Three checkpoints in the transition zone (512, 1000, 2000) is low resolution.** Dense checkpoints via retraining would clarify the mechanism's formation step-by-step.
+3. **Component counting with tau=0.02 is noisy.** We attempted to track name-mover, S-inhibition, duplicate-token, previous-token, and negative-name-mover populations via ablation metrics. Results produce 49 "negative name movers" at 100% accuracy — clearly too loose a threshold. We report counts as supplementary only.
+4. **L8H9 projection is averaged across examples.** We verified attention is consistent per-example (97% of examples >0.8 attention to S2), but output projections are still means. A small number of examples may behave differently.
+5. **The multi-hop pipeline is shown for 160M only.** We identified L1H8 and other duplicate-token heads feeding L8H9 in Pythia-160M. Whether the same pipeline structure exists in 410M and 1B requires further investigation.
 
 ---
 
@@ -214,8 +235,10 @@ scripts/
   fix_exp_a.py                       # L8H9 output projection
   check_dominant_attn.py             # Dominant head attention across scales
   final_probes.py                    # 3 follow-up probes
+  distribution_and_multihop.py       # L8H9 per-example distribution + pipeline analysis
   plot_all_figures.py                # Figures 1–6
   plot_mega_figures.py               # Figures 7–10
+  plot_distribution_multihop.py      # Figures 11–12
 data/
   pile_ioi_natural.json              # 288 clean Pile IOI examples
   example_prompts.txt
@@ -243,6 +266,8 @@ figures/
   fig8_l8h9_output_projection.png    # L8H9 mechanism: S-suppression
   fig9_dominant_head_scales.png      # Mechanism varies by scale
   fig10_top_predictions.png          # The dip reframed
+  fig11_l8h9_distribution.png        # Per-example attention distribution (not bimodal)
+  fig12_multihop_pipeline.png        # Duplicate-token heads feeding L8H9
 ```
 
 ---
