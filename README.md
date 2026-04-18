@@ -53,20 +53,27 @@ Once the circuit organizes (step 3000+), synthetic reaches 100% but Pile climbs 
 
 ---
 
-## Finding 3: The Dip Reframed — The Model Isn't Choosing S, It's Predicting "the"
+## Finding 3: The Dip Reframed — Names Aren't Even in Consideration
 
-At step 1000, Pythia-160M's **top-1 prediction is "the" in 95% of examples** (and "him" in the remaining 5%). Neither the IO name nor the S name is ever the top-1 prediction. Both names sit around rank 150-210 out of 50,257 tokens.
+At step 1000, neither name is anywhere near the model's prediction. Both sit at rank 150–210 with probabilities around 0.05–0.07%. The model predicts "the" 95% of the time. The "60% S-preference" amounts to a 0.02 percentage point probability difference — essentially noise.
 
-| Metric (step 1000) | 160M | 410M | 1B |
-|---|---|---|---|
-| IO is top-1 | 0.0% | 0.0% | 0.0% |
-| S is top-1 | 0.0% | 0.0% | 0.0% |
-| Something else is top-1 | 100% | 100% | 100% |
-| Median IO rank | 208 | 201 | 73 |
-| Median S rank | 148 | 152 | 41 |
-| % where LD(IO − S) < 0 | 59.3% | 59.3% | 61.7% |
+The real developmental story is when names enter consideration at all:
 
-The "below-chance" dip is **not** the model systematically choosing the wrong name. It's the emerging circuit creating a slight S-bias in the name logits while the model predicts function words.
+| Step | IO rank | IO prob | S rank | S prob | IO is top-1 | Accuracy |
+|------|---------|---------|--------|--------|-------------|----------|
+| 1000 | 208 | 0.05% | 147 | 0.07% | 0.0% | 41% |
+| 2000 | 13 | 1.13% | 7 | 1.91% | 0.3% | 35% |
+| 3000 | **4** | **5.77%** | 6 | 3.07% | 11.0% | 61% |
+| 5000 | 3 | 11.3% | 12 | 1.57% | 22.3% | 86% |
+| 8000 | 1 | 19.4% | 8 | 1.62% | 47.3% | 98% |
+| 143000 | **0** | **34.6%** | 14 | 1.04% | 62.7% | 100% |
+
+Three phases:
+1. **Step 1000:** Both names at rank 150–210, probability ~0.05%. The model hasn't learned that names belong here.
+2. **Steps 2000–3000:** Names climb into the top 15. IO overtakes S at step 3000 (rank 4, 5.8% vs rank 6, 3.1%) — precisely when L8H9 locks onto S2.
+3. **Steps 5000+:** IO reaches top 1–3, probability 11–35%. S stays at rank 8–14. The circuit is fully functional.
+
+The "below-chance accuracy" at step 1000 is real but misleading in isolation. The model is not "choosing the wrong name" — it is not predicting names at all.
 
 ![Figure 10](figures/fig10_top_predictions.png)
 
