@@ -1,224 +1,297 @@
 # IOI Circuit Emergence During Training
 
-**Investigating when and how the Indirect Object Identification (IOI) circuit emerges during Pythia language model training, across three model scales.**
+Investigating when and how the Indirect Object Identification (IOI) circuit emerges during language model training.
 
-**Author:** Tejas Dahiya, UW-Madison
-**Advisor:** Cole Blondin
-**Target:** ICML 2026 Mechanistic Interpretability Workshop (deadline May 8, 2026)
+**Author:** Tejas Dahiya, UW-Madison  
+**Advisor:** Cole Blondin  
+**PI:** Sean  
+**Targets:** ICML 2026 Mech Interp Workshop / EMNLP 2026
+
+## Summary
+
+We track IOI circuit formation across 17 independent training runs spanning two model families (Pythia and Stanford GPT-2). Three core findings:
+
+1. All 17 runs show a below-chance accuracy dip in early training. The dip is invariant to random seed, data ordering, and weight initialization (PolyPythias), and replicates across model families (Pythia vs Stanford GPT-2). It is an architectural property of how transformers learn IOI.
+
+2. The head with the largest single-head ablation effect is consistently an S-inhibition head, not a name mover. It attends to the repeated subject token (S2) and suppresses it in the output logits. S-suppression contributes 2-10x more to the logit difference than IO-copying. This holds across both model families.
+
+3. High-resolution checkpoints from Stanford GPT-2 (609 available) reveal that recovery from the dip is not a sharp phase transition but a prolonged, noisy process where the circuit forms and collapses repeatedly over thousands of steps.
+
+## Table of Contents
+
+- [Finding 1: The Dip Is Universal](#finding-1-the-dip-is-universal)
+- [Finding 2: The Dip Is Not Seed or Data Dependent](#finding-2-the-dip-is-not-seed-or-data-dependent)
+- [Finding 3: Names Are Not in Consideration During the Dip](#finding-3-names-are-not-in-consideration-during-the-dip)
+- [Finding 4: Recovery Is Noisy, Not a Phase Transition](#finding-4-recovery-is-noisy-not-a-phase-transition)
+- [Finding 5: Early Name Movers Are Mechanistically Empty](#finding-5-early-name-movers-are-mechanistically-empty)
+- [Finding 6: The Dominant Head Is S-Inhibition, Not a Name Mover](#finding-6-the-dominant-head-is-s-inhibition-not-a-name-mover)
+- [Finding 7: S-Suppression Replicates Across Model Families](#finding-7-s-suppression-replicates-across-model-families)
+- [Finding 8: L8H9 Undergoes a Phase Transition at Step 3000](#finding-8-l8h9-undergoes-a-phase-transition-at-step-3000)
+- [Finding 9: The Multi-Hop Pipeline](#finding-9-the-multi-hop-pipeline)
+- [Finding 10: Ablation-Based Classification Is Unreliable](#finding-10-ablation-based-classification-is-unreliable)
+- [Finding 11: Scale-Dependent Mechanisms](#finding-11-scale-dependent-mechanisms)
+- [Additional Results](#additional-results)
+- [Limitations](#limitations)
+- [Dataset](#dataset)
+- [Repo Structure](#repo-structure)
+- [References](#references)
 
 ---
 
-## TL;DR
+## Finding 1: The Dip Is Universal
 
-We track IOI circuit emergence across Pythia-160M, 410M, and 1B. Four main findings:
+All models tested show IOI accuracy dropping below chance (50%) during early training. This holds across two model families trained on different data with different code.
 
-1. **A non-monotonic accuracy dip at step 1000 replicates across all three scales** — but the "dip" reflects the model predicting function words (like "the") rather than systematically choosing the wrong name.
-2. **Heads classified as name-movers during the dip have near-uniform attention patterns** and write essentially zero into the output direction. Standard ablation-based classification can be misleading during early training.
-3. **The dominant head in Pythia-160M (L8H9) implements IOI through S-suppression as the output of a multi-hop pipeline.** L8H9 attends 92% to S2 (with low variance across examples) and reads a processed representation prepared by earlier duplicate-token heads — most strongly L1H8, which attends 91% from S2 → S1. L8H9 then writes a strong negative S signal (−6.25 at step 143k) into the final-position residual stream.
-4. **This mechanism does NOT universally generalize.** Pythia-1B's L11H0 shows a similar but weaker pattern (60% to S2), while Pythia-410M's L4H6 uses a different mechanism entirely, attending 57% to the final token position.
-
----
-
-## Finding 1: The "Worse Before Better" Dip — Replicates at Scale
-
-All three Pythia models show accuracy dropping below chance at step 1000:
+**Pythia family (3 scales, trained on The Pile):**
 
 | Step | 160M | 410M | 1B |
 |------|------|------|-----|
 | 0 | 52% | 49% | 51% |
-| 512 | 47% | 50% | 47% |
-| **1000** | **41%** | **41%** | **38%** |
+| 1000 | **41%** | **41%** | **38%** |
 | 2000 | 35% | 42% | 67% |
 | 3000 | 61% | 88% | 92% |
-| 8000 | 98% | 99% | 100% |
+| 143000 | 100% | 100% | 100% |
 
-Larger models dip deeper but recover faster. 1B reaches 100% by step 8000, 160M by step 10000.
+**Stanford GPT-2 Small (2 seeds, trained on OpenWebText):**
 
-![Figure 1](figures/fig1_accuracy_across_training.png)
+| Step | Alias (seed 21) | Battlestar (seed 49) |
+|------|----------------|---------------------|
+| 500 | 43% | 42% |
+| 1000 | **30%** | **25%** |
+| 1500 | **10%** | -- |
+| 2000 | 16% | **12%** |
+| 5000 | 31% | 51% |
+| 10000 | 59% | 68% |
+| 50000 | 100% | 100% |
 
----
+Stanford GPT-2 dips deeper (down to 10%) and recovers slower (step 10000 vs Pythia's step 3000). The dip is universal but its depth and duration vary.
 
-## Finding 2: Pile (Natural) IOI Leads Synthetic During the Dip
-
-Across all three models, natural IOI accuracy on Pile text stays near 50% while synthetic accuracy drops to 38-41%:
-
-| Step | 160M Syn | 160M Pile | 410M Syn | 410M Pile | 1B Syn | 1B Pile |
-|------|----------|-----------|----------|-----------|--------|---------|
-| 1000 | 41% | **51%** | 41% | **54%** | 38% | **52%** |
-| 2000 | 35% | **51%** | 42% | **58%** | 67% | 56% |
-
-Once the circuit organizes (step 3000+), synthetic reaches 100% but Pile climbs more slowly: 160M peaks at 74% then drops to 67%, 410M plateaus at 82%, 1B plateaus at 85%.
-
-![Figure 2](figures/fig2_pile_vs_synthetic.png)
+![Figure 1](figures/fig1_universal_dip.png)
 
 ---
 
-## Finding 3: The Dip Reframed — Names Aren't Even in Consideration
+## Finding 2: The Dip Is Not Seed or Data Dependent
 
-At step 1000, neither name is anywhere near the model's prediction. Both sit at rank 150–210 with probabilities around 0.05–0.07%. The model predicts "the" 95% of the time. The "60% S-preference" amounts to a 0.02 percentage point probability difference — essentially noise.
+Using EleutherAI's PolyPythias release, we tested 9 Pythia-160M variants that isolate the effects of random seed, data ordering, and weight initialization. All 9 dip below chance.
 
-The real developmental story is when names enter consideration at all:
+| Step | seed1 | seed3 | seed5 | d-s1 | d-s2 | d-s3 | w-s1 | w-s2 | w-s3 |
+|------|-------|-------|-------|------|------|------|------|------|------|
+| 0 | 50% | 52% | 52% | 53% | 53% | 53% | 50% | 52% | 50% |
+| 1000 | **38%** | **31%** | **42%** | **42%** | **36%** | **41%** | **43%** | **44%** | **39%** |
+| 2000 | **32%** | **18%** | **34%** | **29%** | **28%** | **35%** | **33%** | **37%** | **31%** |
+| 3000 | 80% | 73% | 61% | 70% | 59% | 83% | 65% | 72% | 73% |
+| 143000 | 100% | 99% | 100% | 99% | 100% | 96% | 100% | 100% | 100% |
 
-| Step | IO rank | IO prob | S rank | S prob | IO is top-1 | Accuracy |
-|------|---------|---------|--------|--------|-------------|----------|
-| 1000 | 208 | 0.05% | 147 | 0.07% | 0.0% | 41% |
-| 2000 | 13 | 1.13% | 7 | 1.91% | 0.3% | 35% |
-| 3000 | **4** | **5.77%** | 6 | 3.07% | 11.0% | 61% |
-| 5000 | 3 | 11.3% | 12 | 1.57% | 22.3% | 86% |
-| 8000 | 1 | 19.4% | 8 | 1.62% | 47.3% | 98% |
-| 143000 | **0** | **34.6%** | 14 | 1.04% | 62.7% | 100% |
+- **data-seed variants** (d-s1 through d-s3): same weight initialization, different data ordering. All dip. Data ordering does not cause the dip.
+- **weight-seed variants** (w-s1 through w-s3): same data ordering, different weight initialization. All dip. Weight initialization does not cause the dip.
+- **full-seed variants** (seed1 through seed5): both changed. All dip.
 
-Three phases:
-1. **Step 1000:** Both names at rank 150–210, probability ~0.05%. The model hasn't learned that names belong here.
-2. **Steps 2000–3000:** Names climb into the top 15. IO overtakes S at step 3000 (rank 4, 5.8% vs rank 6, 3.1%) — precisely when L8H9 locks onto S2.
-3. **Steps 5000+:** IO reaches top 1–3, probability 11–35%. S stays at rank 8–14. The circuit is fully functional.
+The dip is architectural.
 
-The "below-chance accuracy" at step 1000 is real but misleading in isolation. The model is not "choosing the wrong name" — it is not predicting names at all.
-
-![Figure 10](figures/fig10_top_predictions.png)
+![Figure 2](figures/fig2_polypythias.png)
 
 ---
 
-## Finding 4: Early "Name-Movers" Are Mechanistically Empty
+## Finding 3: Names Are Not in Consideration During the Dip
 
-Three heads in layer 0 (L0H5, L0H6, L0H10) pass the standard name-mover classification at step 1000 in Pythia-160M. But:
+At step 1000, both IO and S names sit at rank 150-210 out of 50,257 tokens. The model predicts "the" 95% of the time. The "60% S-preference" is a 0.02 percentage point probability difference.
 
-**Attention patterns are essentially uniform:**
+| Step | IO rank | IO prob | S rank | S prob | IO top-1 |
+|------|---------|---------|--------|--------|----------|
+| 1000 | 208 | 0.05% | 147 | 0.07% | 0.0% |
+| 2000 | 13 | 1.13% | 7 | 1.91% | 0.3% |
+| 3000 | 4 | 5.77% | 6 | 3.07% | 11.0% |
+| 8000 | 1 | 19.4% | 8 | 1.62% | 47.3% |
+| 143000 | 0 | 34.6% | 14 | 1.04% | 62.7% |
 
-| Head | to IO | to S1 | to S2 | to prev |
-|------|-------|-------|-------|---------|
-| L0H5 | 0.045 | 0.045 | 0.053 | 0.049 |
-| L0H6 | 0.058 | 0.057 | 0.057 | 0.067 |
-| L0H10 | 0.062 | 0.062 | 0.063 | 0.056 |
+The model is not "choosing the wrong name" at step 1000. It has not learned that names belong in this position at all. Names enter the top-15 by step 2000. IO overtakes S at step 3000, precisely when L8H9 locks onto S2.
 
-**Output projections onto IO/S directions are near zero:**
-
-| Head | Step 1000 diff | Step 3000 diff | Step 143000 diff |
-|------|---------------|---------------|-----------------|
-| L0H5 | −0.0002 | −0.0013 | +0.0006 |
-| L0H6 | −0.0007 | −0.0003 | −0.0006 |
-| L0H10 | +0.0004 | −0.0012 | **−0.0129 (S-promoting)** |
-
-These heads are not mechanistically doing name-moving. They pass our ablation-based metric by accident of small perturbations. By step 143000, L0H10 has even developed a mild S-promoting bias, which explains why ablating it improves accuracy.
-
-**Takeaway for the field:** ablation-based circuit-component classification during early training produces false positives. Attention patterns and output projections are more reliable mechanistic signals.
+![Figure 4](figures/fig4_rank_progression.png)
 
 ---
 
-## Finding 5: L8H9 Suppresses S — As the Output of a Multi-Hop Pipeline
+## Finding 4: Recovery Is Noisy, Not a Phase Transition
 
-In Pythia-160M at step 143000, L8H9 is the dominant head (−18.3pp when ablated). Its mechanism has two parts: what it attends to, and what it writes.
+Stanford GPT-2's 609 checkpoints give a high-resolution view of the transition zone (61 data points between steps 500-5000). The recovery is not clean:
 
-**Attention is remarkably consistent — not an averaging artifact:**
+Phase 1 -- Gradual descent (steps 500-1450): accuracy drops from 43% to 9%, smooth and consistent.
 
-Across 300 prompts, L8H9's attention to S2 has:
-- Mean: 0.929 (std: 0.048)
-- Min: 0.72, Max: 0.99
-- **97% of examples have >80% attention to S2**
-- **0% of examples have <50% attention to S2**
+Phase 2 -- Noisy bottom (steps 1350-2500): wild oscillations between 6-27%. The circuit forms and collapses repeatedly.
 
-The 92% mean is not hiding bimodal behavior — essentially every example shows strong S2 attention.
+Phase 3 -- Noisy recovery (steps 2500-5000): hits 50% at step 4100, drops back to 24% at step 4300. Still below chance at step 5000.
 
-![Figure 11](figures/fig11_l8h9_distribution.png)
+We verified the oscillations are real (not sampling noise) by retesting volatile steps with n=600 examples:
 
-**L8H9 is not reading "raw S" — it reads a processed S2 representation prepared by earlier heads.**
+| Step | n=300 | n=600 | SE |
+|------|-------|-------|-----|
+| 3700 | 43.0% | 40.8% | 2.0% |
+| 3800 | 20.3% | 26.0% | 1.8% |
+| 4100 | 50.0% | 50.0% | 2.0% |
+| 4300 | 20.3% | 24.3% | 1.8% |
 
-Scanning all heads in layers 0–7, we find a clear duplicate-token pipeline feeding into the S2 position. L1H8 attends from S2 back to S1 with weight **0.914**, writing "this token is a repeat" at S2. Several other heads (L6H10=0.45, L2H3=0.42, L3H3=0.41) provide additional processing.
+The circuit genuinely forms and collapses during recovery. This is developmental instability, not measurement noise.
 
-![Figure 12](figures/fig12_multihop_pipeline.png)
-
-**The full mechanism:**
-
-1. **L1H8** (layer 1) attends S2 → S1, writes duplicate-token signal at S2
-2. **Other duplicate-token heads** (L6H10, L2H3, L3H3) add further processing at S2
-3. **L8H9** (layer 8) attends final → S2, reads the processed S-representation
-4. **L8H9 writes strong negative S** into the final-position residual stream
-
-**Output projection (what L8H9 writes):**
-- Step 1000: IO=−0.013, S=−0.015 (writes essentially nothing)
-- Step 3000: IO=−0.419, S=**−1.405** (suppresses both, S 3× more)
-- Step 143000: IO=−0.577, S=**−6.246** (massively suppresses S)
-
-The net S-suppression (IO − S projection) grows from +0.002 → +0.986 → **+5.669** across training. By suppressing S in the logits, IO wins by default.
-
-**L8H9 does NOT copy IO** the way Wang et al. (2022) describe name-movers. It implements IOI as the output stage of a multi-hop S-suppression pipeline. Same behavioral effect (IO wins), fundamentally different mechanism.
-
-![Figure 7](figures/fig7_l8h9_attention_development.png)
-
-![Figure 8](figures/fig8_l8h9_output_projection.png)
+![Figure 3](figures/fig3_highres_transition.png)
+![Figure 10](figures/fig10_recovery_instability.png)
 
 ---
 
-## Finding 6: Mechanism Does NOT Universally Generalize Across Scales
+## Finding 5: Early Name Movers Are Mechanistically Empty
 
-The S2-attending mechanism is 160M-specific. At step 143000:
+At step 1000, three heads in Pythia-160M (L0H5, L0H6, L0H10) pass the name-mover classification threshold. But they have uniform attention (~5-6% to every position) and their output projections onto IO/S directions are near zero (~0.001) at every training step.
 
-| Model | Dominant head | Attn to IO | Attn to S1 | Attn to S2 | Mechanism |
-|-------|---------------|------------|------------|------------|-----------|
-| 160M | L8H9 | 0.029 | 0.031 | **0.922** | S2-suppression |
-| 410M | L4H6 | 0.003 | 0.005 | 0.007 | **Attends to final position (57%)** |
-| 1B | L11H0 | 0.055 | 0.041 | **0.605** | Partial S2-suppression |
-
-Pythia-410M's L4H6 attends **57.5% to itself** (the final token position) and 39.5% to scattered other positions. It does not read S2. It must operate by reading information earlier layers have already written into the final-position residual stream. This is a distinct mechanism.
-
-**Implication:** different Pythia scales converge on different circuit solutions. Scaling doesn't guarantee mechanistic uniformity.
-
-![Figure 9](figures/fig9_dominant_head_scales.png)
+These heads pass the ablation metric by accident of small perturbations. They are not doing name-moving.
 
 ---
 
-## Finding 7: Dominant Head Ablation on Pile — Scale-Dependent Dependence
+## Finding 6: The Dominant Head Is S-Inhibition, Not a Name Mover
 
-Ablating the dominant head at step 143000 and measuring Pile accuracy:
+The head with the largest single-head ablation effect in Pythia-160M is L8H9. Under Wang et al.'s attention-based classification, L8H9 is an **S-inhibition head**, not a name mover:
 
-| Model | Pile baseline | Pile ablated | Drop | Synthetic drop (comparison) |
-|-------|-------------|-------------|------|----------------------------|
-| 160M | 65.6% | 55.2% | −10.4pp | −18.3pp |
-| 410M | 80.9% | 43.8% | **−37.2pp** | ~−18pp |
-| 1B | 86.8% | 82.6% | −4.2pp | ~−18pp |
+- L8H9 attends 92.5% to S2 (not IO)
+- L8H9 writes IO=-0.47, S=-6.22 into the residual stream
+- Net effect: S-suppression of +5.74 logit difference
 
-- **160M:** circuit matters for Pile but less than synthetic (backup mechanisms exist)
-- **410M:** Pile is MORE dependent on L4H6 than synthetic — ablation crashes Pile accuracy below chance
-- **1B:** highly redundant — natural IOI barely depends on the dominant head
+The actual name mover (IO-copier) is L8H1:
 
----
+- L8H1 attends 72.4% to IO
+- L8H1 writes IO=+1.23, S=+0.70
+- Net effect: IO-copying of +0.53 logit difference
 
-## Finding 8: Why Pile Doesn't Dip — L8H9 Doesn't Engage With Pile
+S-suppression (+5.74) contributes 10.8x more than IO-copying (+0.53).
 
-At step 1000, L8H9's attention patterns differ sharply between synthetic and Pile:
+There is also a negative name mover (L9H1) that attends 83.6% to IO but writes negative IO (-1.32). It attends to the right name but suppresses it.
 
-| Context | to IO | to S1 | to S2 |
-|---------|-------|-------|-------|
-| Synthetic | 0.040 | 0.079 | 0.023 |
-| Pile | 0.017 | 0.011 | 0.008 |
-
-On Pile text, the half-formed L8H9 barely fires. It recognizes synthetic templates as IOI problems and starts developing an S1 bias; it doesn't recognize Pile text as the same task. **This explains why Pile doesn't dip below chance** — the emerging (broken) circuit doesn't engage with natural text.
+![Figure 6](figures/fig6_mechanism_comparison.png)
 
 ---
 
-## Finding 9: Induction Heads as a Monotonic Control
+## Finding 7: S-Suppression Replicates Across Model Families
 
-In contrast to IOI's non-monotonic dynamics, induction heads emerge **monotonically** across all three models — a smooth climb from 0 to ~0.9 with no dip, no reorganization. This suggests the "worse before better" pattern is specific to circuits requiring multi-head coordination.
+Stanford GPT-2's dominant head (L10H10) is also an S-inhibition head:
 
-![Figure 4](figures/fig4_induction_vs_ioi.png)
+| Property | Pythia L8H9 | Stanford L10H10 |
+|----------|-------------|----------------|
+| Wang classification | S-inhibition | S-inhibition |
+| Attention to S2 | 92.5% | 59.3% |
+| S projection | -6.22 | -1.94 |
+| IO-S projection diff | +5.74 | +1.89 |
+
+Stanford's actual name mover is L10H4 (IO-copier, proj diff=+0.80). S-suppression to IO-copying ratio is 2.4:1 in Stanford vs 10.8:1 in Pythia.
+
+Stanford also has a negative name mover (L11H11) that attends 64% to IO but writes negative IO (-1.39), matching Pythia's L9H1 pattern.
+
+![Figure 12](figures/fig12_mechanism_summary.png)
+
+---
+
+## Finding 8: L8H9 Undergoes a Phase Transition at Step 3000
+
+Tracking L8H9's attention to S2 across 24 Pythia-160M checkpoints reveals a sharp transition:
+
+| Step | L8H9 to S2 | Accuracy |
+|------|-----------|----------|
+| 1000 | 0.022 | 41% |
+| 2000 | 0.009 | 36% |
+| 3000 | **0.857** | 58% |
+| 4000 | 0.712 | 81% |
+| 143000 | 0.926 | 100% |
+
+L8H9 attention to S2 jumps from 0.009 to 0.857 between steps 2000 and 3000. This is a genuine phase transition. The circuit snaps into place within a single checkpoint interval.
+
+Meanwhile L1H8 (duplicate token) and L1H4 both drop to 0.000 at the final position by step 3000. They have specialized entirely to the S2-to-S1 circuit.
+
+![Figure 5](figures/fig5_head_trajectories.png)
+
+---
+
+## Finding 9: The Multi-Hop Pipeline
+
+The IOI circuit in Pythia-160M is a multi-hop pipeline:
+
+1. **L1H8** (layer 1): attends 91.4% from S2 to S1 (duplicate token detection)
+2. Other heads (L6H10=44.9%, L2H3=41.9%, L3H3=41.3%) add processing at S2
+3. **L8H9** (layer 8): reads the processed S2 representation, writes -6.22 S-suppression
+4. **L8H1** (layer 8): reads IO, writes +1.23 IO-copying
+5. IO wins because S-suppression (+5.74) dominates IO-copying (+0.53)
+
+L8H9 does not read "raw S." It reads a representation that L1H8 and other duplicate-token heads have enriched with repetition information.
+
+---
+
+## Finding 10: Ablation-Based Classification Is Unreliable
+
+**Threshold sensitivity:** The number of heads classified as name movers depends dramatically on the tau threshold:
+
+| Tau | Step 143000 NM | Step 143000 NegNM | % of all heads |
+|-----|---------------|-------------------|----------------|
+| 0.005 | 65 | 70 | 94% |
+| 0.02 | 54 | 53 | 74% |
+| 0.05 | 45 | 38 | 58% |
+| 0.10 | 34 | 26 | 42% |
+| 0.20 | 21 | 12 | 23% |
+
+At tau=0.02, 74% of all 144 heads are classified as either name movers or negative name movers. This is clearly too loose.
+
+**Wang et al. attention-based classification gives more reasonable counts:**
+
+| Step | Name Movers | S-Inhibition | Duplicate Token | Previous Token |
+|------|------------|-------------|----------------|---------------|
+| 512 | 16 | 19 | 4 | 9 |
+| 1000 | 19 | 14 | 5 | 12 |
+| 3000 | 16 | 23 | 11 | 14 |
+| 143000 | 25 | 13 | 8 | 18 |
+
+Key finding: L8H9 is classified as S-inhibition (not name mover) under Wang et al.'s attention criteria at every step from 3000 onward. The standard practice of calling the highest-ablation-impact head a "name mover" is misleading.
+
+![Figure 7](figures/fig7_sensitivity.png)
+![Figure 9](figures/fig9_wang_classification.png)
+
+---
+
+## Finding 11: Scale-Dependent Mechanisms
+
+The dominant head's mechanism varies by model depth:
+
+| Model | Head | Layer position | Attn to S2 | Proj diff | Mechanism |
+|-------|------|---------------|-----------|-----------|-----------|
+| 160M (12L) | L8H9 | 67% depth | 92.5% | +5.74 | Direct S-suppression |
+| 410M (24L) | L4H6 | 17% depth | 0.7% | +0.002 | Indirect (via downstream layers) |
+| 1B (16L) | L11H0 | 69% depth | 60.5% | -- | Partial S-suppression |
+| Stanford GPT-2 (12L) | L10H10 | 83% depth | 59.3% | +1.89 | Direct S-suppression |
+
+S-suppression appears in models where the dominant head is in the final third of the network (160M, 1B, Stanford GPT-2). Pythia-410M's L4H6 is at layer 4/24, too early for direct logit effects. Its near-zero projection (IO=-0.024, S=-0.026) confirms it works through indirect downstream effects rather than directly modifying the output distribution.
 
 ---
 
 ## Additional Results
 
-- **Prefix robustness:** stripping the 5 tokens before IO in Pile prompts drops accuracy from 65.6% → 50.3%. The prefix carries real signal, so our Pile accuracy is likely a lower bound.
-- **General baseline:** Pythia-160M's general next-token accuracy on Pile text is 29.2% while IOI accuracy is 65.6%. The model is substantially better at IOI than general prediction.
-- **L8H9 at step 143000:** ablating it drops synthetic accuracy 100% → 81.7% (−18.3pp), even more critical than at step 3000. No late-emerging backup heads meaningfully replace it.
+**Pile vs synthetic:** Pile (natural) IOI accuracy stays near 50% during the synthetic dip. At step 1000, L8H9 barely fires on Pile text (S2 attention 0.8% vs synthetic 2.3%), explaining why the half-formed circuit does not interfere with natural text.
+
+**Pile ablation across scales:** Ablating the dominant head at step 143000 drops Pile accuracy by 10.4pp (160M), 37.2pp (410M), and 4.2pp (1B). The 1B model is highly redundant while 410M is more dependent on its dominant head for Pile than for synthetic.
+
+**Induction heads as control:** Induction head emergence is monotonic across all three Pythia scales. No dip, no reorganization. The non-monotonic pattern is specific to multi-head circuits like IOI.
+
+**Prefix robustness:** Stripping 5 tokens before IO in Pile prompts drops accuracy from 65.6% to 50.3%. The prefix carries real signal.
+
+![Figure 8](figures/fig8_pile_vs_synthetic.png)
+![Figure 11](figures/fig11_pile_ablation.png)
 
 ---
 
 ## Limitations
 
-1. **"In Pythia" not "in general."** Wang et al. studied GPT-2 Small. Our findings describe Pythia-specific circuit development. The discrepancy between L8H9's S2-attending mechanism and Wang et al.'s description may reflect architectural or training-data differences.
-2. **Three checkpoints in the transition zone (512, 1000, 2000) is low resolution.** Dense checkpoints via retraining would clarify the mechanism's formation step-by-step.
-3. **Component counting with tau=0.02 is noisy.** We attempted to track name-mover, S-inhibition, duplicate-token, previous-token, and negative-name-mover populations via ablation metrics. Results produce 49 "negative name movers" at 100% accuracy — clearly too loose a threshold. We report counts as supplementary only.
-4. **L8H9 projection is averaged across examples.** We verified attention is consistent per-example (97% of examples >0.8 attention to S2), but output projections are still means. A small number of examples may behave differently.
-5. **The multi-hop pipeline is shown for 160M only.** We identified L1H8 and other duplicate-token heads feeding L8H9 in Pythia-160M. Whether the same pipeline structure exists in 410M and 1B requires further investigation.
+1. All models tested are 124M-1B parameters trained on English web text. We have not tested larger models, non-English models, or non-autoregressive architectures.
+
+2. The S-suppression to IO-copying ratio varies across families (10:1 in Pythia, 2.4:1 in Stanford GPT-2). We do not know why.
+
+3. Pythia-410M uses a fundamentally different mechanism than the other models. The S-suppression story does not fully generalize within Pythia.
+
+4. We do not have a theoretical explanation for why S-suppression is the preferred learning strategy. We speculate that suppressing the repeated token is computationally simpler than identifying the non-repeated one, but this is not proven.
+
+5. L9H1 (Pythia) and L11H11 (Stanford) both attend to IO but write negative IO. These "negative name movers" are reproducible across families but their functional role is not fully understood.
+
+6. Pythia's checkpoint resolution (every 1000 steps in the transition zone) may hide the same oscillatory recovery that Stanford's 609 checkpoints reveal.
 
 ---
 
@@ -226,7 +299,7 @@ In contrast to IOI's non-monotonic dynamics, induction heads emerge **monotonica
 
 **Synthetic IOI:** Wang et al. 2022 templates. 136 names, 30 templates (15 ABBA + 15 BABA), 300 prompts per checkpoint.
 
-**Natural IOI (Pile):** 288 examples extracted from EleutherAI/the_pile_deduplicated (Pythia's training data). Scanned 13.9M texts. Removed bAbI synthetic QA contamination (42% of initial finds). 174 examples with single-token IO names used for evaluation.
+**Natural IOI (Pile):** 288 examples extracted from EleutherAI/the_pile_deduplicated. Scanned 13.9M texts. Removed bAbI contamination. 174 single-token IO name examples used for evaluation.
 
 ---
 
@@ -234,47 +307,75 @@ In contrast to IOI's non-monotonic dynamics, induction heads emerge **monotonica
 
 ```
 scripts/
-  dev_interp_checkpoints.py          # Part 1: component emergence per checkpoint
+  # Core analysis
+  dev_interp_checkpoints.py          # Part 1: component emergence (160M/410M/1B)
   dev_interp_pile_vs_synthetic.py    # Part 2: Pile vs synthetic comparison
-  parse_pile_ioi.py                  # Pile IOI extraction
-  quick_experiments.py               # Prefix, baseline, final ablation
-  mega_experiments.py                # Main experiments (A,B,C,D,E)
+  mega_experiments.py                # Output projections, attention, ablations
+  cole_followups.py                  # Rank/probability progression, 410M self-attention
+
+  # Cross-family replication
+  stanford_gpt2_analysis.py          # Stanford GPT-2: dip test + mechanism + 2nd seed
+  polypythias_fix.py                 # PolyPythias: 9 seed/data/weight variants
+
+  # Mechanistic deep dives
   fix_exp_a.py                       # L8H9 output projection
   check_dominant_attn.py             # Dominant head attention across scales
-  final_probes.py                    # 3 follow-up probes
-  distribution_and_multihop.py       # L8H9 per-example distribution + pipeline analysis
-  plot_all_figures.py                # Figures 1–6
-  plot_mega_figures.py               # Figures 7–10
-  plot_distribution_multihop.py      # Figures 11–12
+  final_probes.py                    # Follow-up probes
+  distribution_and_multihop.py       # Per-example distribution + pipeline analysis
+
+  # Sensitivity and classification
+  final_three_experiments.py         # Head trajectories, tau sensitivity, Wang classification
+  polish_experiments.py              # L9H1 mechanism, Stanford classification, high-res curve
+  two_more.py                        # Volatile step verification, Stanford projections
+
+  # Data and utilities
+  parse_pile_ioi.py                  # Pile IOI extraction
+  quick_experiments.py               # Prefix, baseline, final ablation
+
+  # Figures
+  generate_all_figures.py            # Generates all 12 figures from result JSONs
+
 data/
   pile_ioi_natural.json              # 288 clean Pile IOI examples
   example_prompts.txt
+
 results/
-  part1_component_emergence.json                           # 160M Part 1
-  dev_interp_EleutherAI_pythia-410m-deduped.json           # 410M Part 1
-  dev_interp_EleutherAI_pythia-1b-deduped.json             # 1B Part 1
-  part2_pile_vs_synthetic.json                             # 160M Part 2
-  dev_interp_grokking_EleutherAI_pythia-410m-deduped.json  # 410M Part 2
-  dev_interp_grokking_EleutherAI_pythia-1b-deduped.json    # 1B Part 2
-  ablation_early_nms.json            # 160M early NM ablations
-  ablation_cross_scale.json          # 410M + 1B ablations
-  induction_emergence.json           # Induction tracking, all 3 models
-  quick_experiments.json             # Prefix, L8H9 final, baseline
-  mega_experiments.json              # Projections, attention, probes
-  head_tracking_160m.txt             # Individual head tracking
+  # Pythia (3 scales)
+  part1_component_emergence.json
+  dev_interp_EleutherAI_pythia-410m-deduped.json
+  dev_interp_EleutherAI_pythia-1b-deduped.json
+  part2_pile_vs_synthetic.json
+  dev_interp_grokking_EleutherAI_pythia-410m-deduped.json
+  dev_interp_grokking_EleutherAI_pythia-1b-deduped.json
+  mega_experiments.json
+  cole_followups.json
+  ablation_early_nms.json
+  ablation_cross_scale.json
+  induction_emergence.json
+  quick_experiments.json
+
+  # Cross-family replication
+  stanford_gpt2_ioi.json
+  polypythias_ioi.json
+
+  # Mechanistic and classification
+  final_three.json
+  polish_experiments.json
+  two_more.json
+
 figures/
-  fig1_accuracy_across_training.png  # IOI accuracy, 3 models
-  fig2_pile_vs_synthetic.png         # Pile vs synthetic, 3 subplots
-  fig3_components_vs_accuracy.png    # Name-mover count vs accuracy
-  fig4_induction_vs_ioi.png          # Monotonic vs non-monotonic
-  fig5_ablation_results.png          # Ablation bar charts
-  fig6_head_succession.png           # Dominant head timeline
-  fig7_l8h9_attention_development.png    # L8H9 attention across training
-  fig8_l8h9_output_projection.png    # L8H9 mechanism: S-suppression
-  fig9_dominant_head_scales.png      # Mechanism varies by scale
-  fig10_top_predictions.png          # The dip reframed
-  fig11_l8h9_distribution.png        # Per-example attention distribution (not bimodal)
-  fig12_multihop_pipeline.png        # Duplicate-token heads feeding L8H9
+  fig1_universal_dip.png/pdf         # Dip across 5 models, 2 families
+  fig2_polypythias.png/pdf           # 9 PolyPythias variants
+  fig3_highres_transition.png/pdf    # 61-point Stanford transition curve
+  fig4_rank_progression.png/pdf      # IO/S rank and probability across training
+  fig5_head_trajectories.png/pdf     # L8H9 attention phase transition
+  fig6_mechanism_comparison.png/pdf  # S-suppression vs IO-copying (both families)
+  fig7_sensitivity.png/pdf           # Tau threshold sensitivity
+  fig8_pile_vs_synthetic.png/pdf     # Pile vs synthetic IOI
+  fig9_wang_classification.png/pdf   # Wang et al. classification over training
+  fig10_recovery_instability.png/pdf # Verified oscillations during recovery
+  fig11_pile_ablation.png/pdf        # Cross-scale Pile ablation
+  fig12_mechanism_summary.png/pdf    # Cross-family mechanism comparison table
 ```
 
 ---
@@ -283,5 +384,6 @@ figures/
 
 - Wang et al. 2022. "Interpretability in the Wild: a Circuit for Indirect Object Identification in GPT-2 Small"
 - Biderman et al. 2023. "Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling"
+- van der Wal et al. 2025. "PolyPythias: Stability and Outliers across Fifty Language Model Pre-Training Runs"
 - Olsson et al. 2022. "In-context Learning and Induction Heads"
-- Nanda et al. 2023. "Progress measures for grokking via mechanistic interpretability"
+- Stanford CRFM. "Mistral: A Journey towards Reproducible Language Model Training"

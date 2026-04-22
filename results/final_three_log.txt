@@ -1,346 +1,0 @@
-nohup: ignoring input
-============================================================
-  FINAL THREE EXPERIMENTS
-  Started: 2026-04-22 20:15:45
-============================================================
-
-============================================================
-  PART 1: Head Trajectories (24 steps)
-============================================================
-
-  --- Step 0 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3635.54it/s]
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.074 S1=0.075 S2=0.074 self=0.047
-    L8H9: IO=0.071 S1=0.063 S2=0.063 self=0.058
-    L1H8: IO=0.057 S1=0.060 S2=0.057 self=0.051
-    acc=0.530
-
-  --- Step 1 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3379.63it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.074 S1=0.075 S2=0.074 self=0.047
-    L8H9: IO=0.071 S1=0.063 S2=0.063 self=0.058
-    L1H8: IO=0.057 S1=0.060 S2=0.057 self=0.051
-    acc=0.530
-
-  --- Step 2 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3051.83it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.074 S1=0.075 S2=0.074 self=0.047
-    L8H9: IO=0.071 S1=0.063 S2=0.063 self=0.058
-    L1H8: IO=0.057 S1=0.060 S2=0.057 self=0.051
-    acc=0.530
-
-  --- Step 4 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3313.96it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.074 S1=0.075 S2=0.074 self=0.047
-    L8H9: IO=0.071 S1=0.062 S2=0.062 self=0.059
-    L1H8: IO=0.057 S1=0.060 S2=0.057 self=0.051
-    acc=0.530
-
-  --- Step 8 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3225.37it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.074 S1=0.075 S2=0.073 self=0.047
-    L8H9: IO=0.069 S1=0.062 S2=0.061 self=0.065
-    L1H8: IO=0.057 S1=0.060 S2=0.057 self=0.051
-    acc=0.530
-
-  --- Step 16 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3163.58it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.074 S1=0.074 S2=0.073 self=0.048
-    L8H9: IO=0.063 S1=0.059 S2=0.061 self=0.068
-    L1H8: IO=0.056 S1=0.059 S2=0.055 self=0.049
-    acc=0.525
-
-  --- Step 32 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3020.64it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.074 S1=0.074 S2=0.073 self=0.050
-    L8H9: IO=0.058 S1=0.055 S2=0.059 self=0.070
-    L1H8: IO=0.057 S1=0.060 S2=0.053 self=0.051
-    acc=0.505
-
-  --- Step 64 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3263.28it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.072 S1=0.073 S2=0.072 self=0.053
-    L8H9: IO=0.055 S1=0.052 S2=0.058 self=0.099
-    L1H8: IO=0.052 S1=0.056 S2=0.051 self=0.049
-    acc=0.510
-
-  --- Step 128 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3298.95it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.073 S1=0.073 S2=0.072 self=0.054
-    L8H9: IO=0.050 S1=0.047 S2=0.047 self=0.077
-    L1H8: IO=0.049 S1=0.054 S2=0.050 self=0.050
-    acc=0.500
-
-  --- Step 256 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3196.61it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.075 S1=0.075 S2=0.075 self=0.055
-    L8H9: IO=0.051 S1=0.057 S2=0.054 self=0.065
-    L1H8: IO=0.049 S1=0.056 S2=0.051 self=0.061
-    acc=0.515
-
-  --- Step 512 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3126.97it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.077 S1=0.076 S2=0.078 self=0.058
-    L8H9: IO=0.035 S1=0.034 S2=0.048 self=0.063
-    L1H8: IO=0.036 S1=0.034 S2=0.043 self=0.103
-    acc=0.455
-
-  --- Step 1000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3567.26it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.070 S1=0.070 S2=0.071 self=0.123
-    L8H9: IO=0.038 S1=0.066 S2=0.022 self=0.025
-    L1H8: IO=0.014 S1=0.013 S2=0.020 self=0.216
-    acc=0.415
-
-  --- Step 2000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3262.93it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.034 S1=0.034 S2=0.034 self=0.245
-    L8H9: IO=0.004 S1=0.006 S2=0.009 self=0.024
-    L1H8: IO=0.016 S1=0.015 S2=0.009 self=0.250
-    acc=0.360
-
-  --- Step 3000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3365.59it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.027 S1=0.027 S2=0.027 self=0.303
-    L8H9: IO=0.040 S1=0.056 S2=0.857 self=0.001
-    L1H8: IO=0.004 S1=0.004 S2=0.001 self=0.151
-    acc=0.575
-
-  --- Step 4000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3427.06it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.032 S1=0.031 S2=0.032 self=0.362
-    L8H9: IO=0.039 S1=0.118 S2=0.712 self=0.004
-    L1H8: IO=0.001 S1=0.001 S2=0.000 self=0.069
-    acc=0.810
-
-  --- Step 5000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3364.06it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.025 S1=0.024 S2=0.024 self=0.385
-    L8H9: IO=0.050 S1=0.138 S2=0.703 self=0.003
-    L1H8: IO=0.001 S1=0.001 S2=0.000 self=0.121
-    acc=0.870
-
-  --- Step 6000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3355.35it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.042 S1=0.041 S2=0.040 self=0.352
-    L8H9: IO=0.061 S1=0.142 S2=0.673 self=0.004
-    L1H8: IO=0.001 S1=0.002 S2=0.000 self=0.092
-    acc=0.890
-
-  --- Step 8000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3227.38it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.049 S1=0.048 S2=0.049 self=0.293
-    L8H9: IO=0.063 S1=0.100 S2=0.677 self=0.009
-    L1H8: IO=0.001 S1=0.001 S2=0.000 self=0.088
-    acc=0.955
-
-  --- Step 10000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3247.79it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.037 S1=0.035 S2=0.037 self=0.330
-    L8H9: IO=0.057 S1=0.084 S2=0.655 self=0.011
-    L1H8: IO=0.000 S1=0.000 S2=0.000 self=0.106
-    acc=0.965
-
-  --- Step 16000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3328.10it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.025 S1=0.024 S2=0.028 self=0.355
-    L8H9: IO=0.064 S1=0.086 S2=0.531 self=0.011
-    L1H8: IO=0.000 S1=0.000 S2=0.000 self=0.101
-    acc=0.900
-
-  --- Step 33000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3484.33it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.022 S1=0.021 S2=0.026 self=0.368
-    L8H9: IO=0.046 S1=0.070 S2=0.645 self=0.006
-    L1H8: IO=0.000 S1=0.000 S2=0.000 self=0.077
-    acc=0.965
-
-  --- Step 66000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3107.59it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.022 S1=0.021 S2=0.023 self=0.349
-    L8H9: IO=0.047 S1=0.074 S2=0.699 self=0.003
-    L1H8: IO=0.000 S1=0.001 S2=0.000 self=0.109
-    acc=0.995
-
-  --- Step 100000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3334.52it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.021 S1=0.021 S2=0.023 self=0.349
-    L8H9: IO=0.068 S1=0.079 S2=0.633 self=0.003
-    L1H8: IO=0.001 S1=0.001 S2=0.000 self=0.129
-    acc=0.995
-
-  --- Step 143000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3439.34it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L0H10: IO=0.022 S1=0.021 S2=0.024 self=0.304
-    L8H9: IO=0.023 S1=0.031 S2=0.925 self=0.000
-    L1H8: IO=0.001 S1=0.001 S2=0.000 self=0.122
-    acc=0.995
-
-PART 1 COMPLETE
-
-============================================================
-  PART 2: Sensitivity Analysis
-============================================================
-
-  --- Step 512 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3294.08it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    tau=0.005: NM=0, NegNM=2, total=2/144 (1%)
-    tau=0.010: NM=0, NegNM=0, total=0/144 (0%)
-    tau=0.020: NM=0, NegNM=0, total=0/144 (0%)
-    tau=0.050: NM=0, NegNM=0, total=0/144 (0%)
-    tau=0.100: NM=0, NegNM=0, total=0/144 (0%)
-    tau=0.200: NM=0, NegNM=0, total=0/144 (0%)
-
-  --- Step 1000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3267.90it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    tau=0.005: NM=28, NegNM=25, total=53/144 (37%)
-    tau=0.010: NM=19, NegNM=16, total=35/144 (24%)
-    tau=0.020: NM=7, NegNM=7, total=14/144 (10%)
-    tau=0.050: NM=0, NegNM=1, total=1/144 (1%)
-    tau=0.100: NM=0, NegNM=0, total=0/144 (0%)
-    tau=0.200: NM=0, NegNM=0, total=0/144 (0%)
-
-  --- Step 2000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3095.37it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    tau=0.005: NM=76, NegNM=40, total=116/144 (81%)
-    tau=0.010: NM=66, NegNM=34, total=100/144 (69%)
-    tau=0.020: NM=56, NegNM=28, total=84/144 (58%)
-    tau=0.050: NM=30, NegNM=15, total=45/144 (31%)
-    tau=0.100: NM=16, NegNM=9, total=25/144 (17%)
-    tau=0.200: NM=4, NegNM=1, total=5/144 (3%)
-
-  --- Step 3000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3154.64it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    tau=0.005: NM=71, NegNM=49, total=120/144 (83%)
-    tau=0.010: NM=62, NegNM=40, total=102/144 (71%)
-    tau=0.020: NM=55, NegNM=34, total=89/144 (62%)
-    tau=0.050: NM=38, NegNM=24, total=62/144 (43%)
-    tau=0.100: NM=21, NegNM=14, total=35/144 (24%)
-    tau=0.200: NM=9, NegNM=7, total=16/144 (11%)
-
-  --- Step 5000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3429.86it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    tau=0.005: NM=57, NegNM=68, total=125/144 (87%)
-    tau=0.010: NM=53, NegNM=59, total=112/144 (78%)
-    tau=0.020: NM=46, NegNM=50, total=96/144 (67%)
-    tau=0.050: NM=39, NegNM=34, total=73/144 (51%)
-    tau=0.100: NM=25, NegNM=18, total=43/144 (30%)
-    tau=0.200: NM=14, NegNM=12, total=26/144 (18%)
-
-  --- Step 143000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3207.73it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    tau=0.005: NM=65, NegNM=70, total=135/144 (94%)
-    tau=0.010: NM=59, NegNM=65, total=124/144 (86%)
-    tau=0.020: NM=54, NegNM=53, total=107/144 (74%)
-    tau=0.050: NM=45, NegNM=38, total=83/144 (58%)
-    tau=0.100: NM=34, NegNM=26, total=60/144 (42%)
-    tau=0.200: NM=21, NegNM=12, total=33/144 (23%)
-
-PART 2 COMPLETE
-
-============================================================
-  PART 3: Wang et al. Attention-Based Classification
-============================================================
-
-  --- Step 512 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3256.14it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    Wang et al. counts: NM=16, S-inh=19, DupTok=4, PrevTok=9
-
-  --- Step 1000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3293.86it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    Wang et al. counts: NM=19, S-inh=14, DupTok=5, PrevTok=12
-
-  --- Step 2000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3268.78it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    Wang et al. counts: NM=17, S-inh=18, DupTok=5, PrevTok=13
-
-  --- Step 3000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3277.13it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    Wang et al. counts: NM=16, S-inh=23, DupTok=11, PrevTok=14
-
-  --- Step 5000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3588.32it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    Wang et al. counts: NM=18, S-inh=10, DupTok=11, PrevTok=15
-
-  --- Step 143000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3388.78it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-    Wang et al. counts: NM=25, S-inh=13, DupTok=8, PrevTok=18
-
-PART 3 COMPLETE
-
-============================================================
-  ALL DONE. Time: 1634s (0.5 hours)
-============================================================

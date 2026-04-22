@@ -1,252 +1,0 @@
-nohup: ignoring input
-============================================================
-  POLISH EXPERIMENTS
-  Started: 2026-04-22 20:48:50
-============================================================
-
-============================================================
-  EXP 1: L9H1 Mechanism (the actual name mover?)
-============================================================
-
-  --- Step 3000 ---
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3450.47it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L9H1: attn IO=0.012 S2=0.030 | proj IO=-0.074 S=-0.100 diff=0.025 | S-suppressor (S-inhibition)
-    L8H9: attn IO=0.040 S2=0.857 | proj IO=-0.423 S=-1.394 diff=0.971 | S-suppressor (S-inhibition)
-    L8H1: attn IO=0.442 S2=0.104 | proj IO=2.799 S=2.336 diff=0.464 | IO-copier (name mover)
-
-  --- Step 143000 ---
-Loading weights:   0%|                                                                                                            | 0/148 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 148/148 [00:00<00:00, 3349.94it/s]
-Loaded pretrained model EleutherAI/pythia-160m-deduped into HookedTransformer
-    L9H1: attn IO=0.836 S2=0.164 | proj IO=-1.320 S=-0.300 diff=-1.020 | unclear
-    L8H9: attn IO=0.023 S2=0.925 | proj IO=-0.473 S=-6.216 diff=5.743 | S-suppressor (S-inhibition)
-    L8H1: attn IO=0.724 S2=0.036 | proj IO=1.228 S=0.702 diff=0.526 | IO-copier (name mover)
-
-EXP 1 COMPLETE
-
-============================================================
-  EXP 2: Stanford GPT-2 L10H10 Wang Classification
-============================================================
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3566.06it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12
-    Layer 8/12
-    Layer 12/12
-
-  Top Wang-style Name Movers (END->IO):
-    L11H11: 0.6518
-    L10H4: 0.3952
-    L10H11: 0.3914
-    L10H7: 0.3643
-    L9H1: 0.3462
-  Top S-Inhibition (END->S2):
-    L10H10: 0.5929
-    L8H4: 0.3606
-    L2H8: 0.1982
-    L9H2: 0.1486
-    L6H11: 0.1198
-  Top Duplicate Token (S2->S1):
-    L0H11: 0.8048
-    L1H11: 0.7299
-    L1H5: 0.6633
-    L0H4: 0.2041
-    L4H4: 0.1589
-
-  L10H10: END->IO=0.0521, END->S2=0.5929, S2->S1=0.0031
-  L10H10 Wang classification: S-inhibition
-  L10H10 projection: IO=-0.0458, S=-1.9349, diff=1.8891
-
-EXP 2 COMPLETE
-
-============================================================
-  EXP 3: High-Resolution Phase Transition (Stanford)
-============================================================
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3812.12it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 500: acc=0.433, LD=-0.1982
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 4030.85it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3537.71it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3519.50it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3628.29it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3048.59it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3275.56it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3804.97it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3603.79it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3564.65it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3724.23it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 1000: acc=0.300, LD=-0.8050
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3680.90it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3092.21it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3333.84it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/commits/refs%2Fpr%2F5?p=18&limit=50
-Rate limited. Waiting 240.0s before retry [Retry 1/5].
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/xet-read-token/c733529e956d60d987375153c839a7c5a7bb5b23
-Rate limited. Waiting 239.0s before retry [Retry 1/5].
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3617.24it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3796.93it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3565.24it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3733.37it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3572.29it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3447.23it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3514.48it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 1500: acc=0.103, LD=-1.4053
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3499.64it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3159.91it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/commits/refs%2Fpr%2F5?p=20&limit=50
-Rate limited. Waiting 222.0s before retry [Retry 1/5].
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/xet-read-token/73ceabf7fcfc5eb5bd1a8f82a4bbe632793ad5cb
-Rate limited. Waiting 222.0s before retry [Retry 1/5].
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3723.45it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3504.74it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3404.54it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3457.60it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3631.37it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3422.37it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3233.42it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3445.55it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 2000: acc=0.160, LD=-1.1668
-    Step 2050: FAILED (checkpoint-2050 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3690.08it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 2150: FAILED (checkpoint-2150 is not a valid git identifier (branch name, )
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/xet-read-token/e09cec00562b0d956175f2709fbb25465c71cffe
-Rate limited. Waiting 233.0s before retry [Retry 1/5].
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3635.13it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 2250: FAILED (checkpoint-2250 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3731.34it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 2350: FAILED (checkpoint-2350 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3541.76it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 2450: FAILED (checkpoint-2450 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3505.82it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 2500: acc=0.157, LD=-1.2252
-    Step 2550: FAILED (checkpoint-2550 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3587.10it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 2650: FAILED (checkpoint-2650 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3635.72it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 2750: FAILED (checkpoint-2750 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3577.75it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 2850: FAILED (checkpoint-2850 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3451.66it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 2950: FAILED (checkpoint-2950 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3460.40it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 3000: acc=0.260, LD=-0.8201
-    Step 3050: FAILED (checkpoint-3050 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3520.44it/s]
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/commits/main?p=3&limit=50
-Rate limited. Waiting 234.0s before retry [Retry 1/5].
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 3150: FAILED (checkpoint-3150 is not a valid git identifier (branch name, )
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/xet-read-token/aa038c2ff1d2e4d9b7b1f9bd195a210490d5cccc
-Rate limited. Waiting 231.0s before retry [Retry 1/5].
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3792.99it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 3250: FAILED (checkpoint-3250 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3735.94it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 3350: FAILED (checkpoint-3350 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3425.72it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 3450: FAILED (checkpoint-3450 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3566.52it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 3500: acc=0.167, LD=-1.5055
-    Step 3550: FAILED (checkpoint-3550 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3710.45it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 3650: FAILED (checkpoint-3650 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3408.78it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 3750: FAILED (checkpoint-3750 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3634.98it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 3850: FAILED (checkpoint-3850 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3280.81it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 3950: FAILED (checkpoint-3950 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3520.34it/s]
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/commits/main?p=10&limit=50
-Rate limited. Waiting 235.0s before retry [Retry 1/5].
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 4000: acc=0.333, LD=-0.5992
-    Step 4050: FAILED (checkpoint-4050 is not a valid git identifier (branch name, )
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/xet-read-token/0f8379789adcc9d0c103b7b374670cdfbb02bf46
-Rate limited. Waiting 232.0s before retry [Retry 1/5].
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3424.39it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 4150: FAILED (checkpoint-4150 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3554.64it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 4250: FAILED (checkpoint-4250 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3455.08it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 4350: FAILED (checkpoint-4350 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3453.65it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 4450: FAILED (checkpoint-4450 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3532.33it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 4500: acc=0.207, LD=-1.0903
-    Step 4550: FAILED (checkpoint-4550 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3348.92it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 4650: FAILED (checkpoint-4650 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3420.47it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 4750: FAILED (checkpoint-4750 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3222.48it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 4850: FAILED (checkpoint-4850 is not a valid git identifier (branch name, )
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3789.21it/s]
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/commits/main?p=15&limit=50
-Rate limited. Waiting 237.0s before retry [Retry 1/5].
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 4950: FAILED (checkpoint-4950 is not a valid git identifier (branch name, )
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/xet-read-token/df5db10db03f05f560a3c543d87326928c25f37a
-Rate limited. Waiting 236.0s before retry [Retry 1/5].
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3777.60it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Step 5000: acc=0.310, LD=-0.7492
-
-EXP 3 COMPLETE
-
-  ALL DONE. Time: 1974s (0.5 hours)

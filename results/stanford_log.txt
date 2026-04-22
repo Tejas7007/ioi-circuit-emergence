@@ -1,572 +1,0 @@
-nohup: ignoring input
-============================================================
-  STANFORD GPT-2 IOI ANALYSIS
-  Model: stanford-crfm/alias-gpt2-small-x21
-  Device: cuda
-  Started: 2026-04-22 19:05:44
-============================================================
-
-============================================================
-  PART 1: IOI Accuracy Sweep (37 checkpoints)
-  Model: stanford-crfm/alias-gpt2-small-x21
-  Device: cuda
-============================================================
-
---- Step 0 ---
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 17589.40it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=0.0011, IO_rank=27023, S_rank=26013, IO_prob=0.0018%, S_prob=0.0018%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('pa', 33), ('691', 23), ('Retrieved', 22)]
-
---- Step 10 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3584.81it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=0.0011, IO_rank=27029, S_rank=26013, IO_prob=0.0018%, S_prob=0.0018%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('pa', 33), ('691', 24), ('ivities', 22)]
-
---- Step 20 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3194.93it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0003, IO_rank=25304, S_rank=25203, IO_prob=0.0019%, S_prob=0.0019%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('.', 300)]
-
---- Step 30 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3434.14it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0016, IO_rank=9002, S_rank=9037, IO_prob=0.0029%, S_prob=0.0029%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 300)]
-
---- Step 40 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3558.95it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0010, IO_rank=5500, S_rank=5503, IO_prob=0.0023%, S_prob=0.0023%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 300)]
-
---- Step 50 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3302.55it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0028, IO_rank=5580, S_rank=5592, IO_prob=0.0019%, S_prob=0.0019%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 300)]
-
---- Step 60 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3410.92it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0084, IO_rank=5332, S_rank=5247, IO_prob=0.0027%, S_prob=0.0028%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 276), ('be', 24)]
-
---- Step 70 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3546.04it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0088, IO_rank=5606, S_rank=5558, IO_prob=0.0028%, S_prob=0.0028%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('be', 193), ('the', 107)]
-
---- Step 80 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3342.58it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0065, IO_rank=4621, S_rank=4589, IO_prob=0.0033%, S_prob=0.0034%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 234), ('be', 66)]
-
---- Step 90 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3491.21it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0107, IO_rank=4698, S_rank=4750, IO_prob=0.0028%, S_prob=0.0029%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 300)]
-
---- Step 100 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3309.95it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0076, IO_rank=5686, S_rank=5634, IO_prob=0.0020%, S_prob=0.0020%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 300)]
-
---- Step 150 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3427.17it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0164, IO_rank=5582, S_rank=5547, IO_prob=0.0015%, S_prob=0.0015%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 287), ('be', 13)]
-
---- Step 200 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3502.83it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.500, LD=-0.0413, IO_rank=2957, S_rank=2862, IO_prob=0.0028%, S_prob=0.0028%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 284), ('be', 16)]
-
---- Step 250 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3717.25it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.457, LD=-0.0656, IO_rank=2591, S_rank=2504, IO_prob=0.0026%, S_prob=0.0027%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 265), ('be', 35)]
-
---- Step 300 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 2939.11it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.470, LD=-0.0874, IO_rank=2913, S_rank=2734, IO_prob=0.0025%, S_prob=0.0026%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('be', 153), ('the', 147)]
-
---- Step 400 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3319.79it/s]
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/commits/main?p=4&limit=50
-Rate limited. Waiting 228.0s before retry [Retry 1/5].
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.457, LD=-0.1335, IO_rank=2575, S_rank=2391, IO_prob=0.0037%, S_prob=0.0041%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 209), ('be', 91)]
-
---- Step 500 ---
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/xet-read-token/ea737918a98a1cffc306e22722f3f4eedc7c72ee
-Rate limited. Waiting 225.0s before retry [Retry 1/5].
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3328.95it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.433, LD=-0.1982, IO_rank=1566, S_rank=1340, IO_prob=0.0066%, S_prob=0.0078%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 212), ('be', 88)]
-
---- Step 600 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3345.31it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.460, LD=-0.2639, IO_rank=1189, S_rank=1060, IO_prob=0.0096%, S_prob=0.0125%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 249), ('be', 48), ('see', 3)]
-
---- Step 700 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3458.44it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.423, LD=-0.4042, IO_rank=858, S_rank=604, IO_prob=0.0156%, S_prob=0.0231%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 262), ('me', 34), ('her', 4)]
-
---- Step 800 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3540.50it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.457, LD=-0.5132, IO_rank=258, S_rank=166, IO_prob=0.0454%, S_prob=0.0704%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 258), ('me', 34), ('her', 4)]
-
---- Step 900 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3911.91it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.343, LD=-0.5841, IO_rank=174, S_rank=88, IO_prob=0.0609%, S_prob=0.1106%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 262), ('me', 29), ('her', 9)]
-
---- Step 1000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3211.38it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.300, LD=-0.8050, IO_rank=157, S_rank=59, IO_prob=0.0678%, S_prob=0.1543%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 251), ('me', 40), ('her', 9)]
-
---- Step 1100 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3675.45it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.183, LD=-0.9660, IO_rank=115, S_rank=39, IO_prob=0.0922%, S_prob=0.2510%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 227), ('me', 38), ('her', 35)]
-
---- Step 1200 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3776.57it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.223, LD=-1.0201, IO_rank=143, S_rank=40, IO_prob=0.0970%, S_prob=0.2623%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 252), ('me', 38), ('her', 10)]
-
---- Step 1500 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3387.49it/s]
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/commits/main?p=10&limit=50
-Rate limited. Waiting 240.0s before retry [Retry 1/5].
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.103, LD=-1.4053, IO_rank=118, S_rank=24, IO_prob=0.1423%, S_prob=0.6918%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 258), ('me', 24), ('her', 9)]
-
---- Step 2000 ---
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/xet-read-token/3f21896241ae372170cca6c772ca73063fe27072
-Rate limited. Waiting 238.0s before retry [Retry 1/5].
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3243.25it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.160, LD=-1.1668, IO_rank=92, S_rank=24, IO_prob=0.2387%, S_prob=0.7478%
-  Top-1: IO=0.0%, S=0.0%, other=100.0%
-  Top other: [('the', 232), ('him', 34), ('her', 24)]
-
---- Step 2500 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3522.34it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.157, LD=-1.2252, IO_rank=52, S_rank=13, IO_prob=0.6163%, S_prob=1.3466%
-  Top-1: IO=0.3%, S=0.3%, other=99.3%
-  Top other: [('the', 233), ('her', 26), ('me', 21)]
-
---- Step 3000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3395.48it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.260, LD=-0.8201, IO_rank=11, S_rank=6, IO_prob=2.2210%, S_prob=2.8471%
-  Top-1: IO=3.3%, S=1.7%, other=95.0%
-  Top other: [('the', 209), ('him', 31), ('her', 22)]
-
---- Step 4000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3419.01it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.333, LD=-0.5992, IO_rank=15, S_rank=9, IO_prob=1.5518%, S_prob=2.1856%
-  Top-1: IO=1.0%, S=2.0%, other=97.0%
-  Top other: [('the', 239), ('her', 26), ('them', 14)]
-
---- Step 5000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3575.77it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.310, LD=-0.7492, IO_rank=13, S_rank=7, IO_prob=2.0709%, S_prob=3.2649%
-  Top-1: IO=1.0%, S=4.3%, other=94.7%
-  Top other: [('the', 184), ('him', 44), ('her', 41)]
-
---- Step 8000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3719.28it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.523, LD=-0.0208, IO_rank=4, S_rank=5, IO_prob=7.1690%, S_prob=6.4786%
-  Top-1: IO=16.7%, S=9.3%, other=74.0%
-  Top other: [('the', 139), ('her', 33), ('him', 25)]
-
---- Step 10000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3357.37it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.593, LD=0.4681, IO_rank=2, S_rank=4, IO_prob=12.7083%, S_prob=7.5436%
-  Top-1: IO=27.7%, S=13.3%, other=59.0%
-  Top other: [('the', 121), ('him', 24), ('them', 18)]
-
---- Step 20000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3476.45it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.980, LD=2.9538, IO_rank=0, S_rank=6, IO_prob=38.4086%, S_prob=2.5063%
-  Top-1: IO=77.0%, S=0.3%, other=22.7%
-  Top other: [('the', 61), ('his', 4), ('them', 2)]
-
---- Step 50000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3654.58it/s]
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/commits/main?p=15&limit=50
-Rate limited. Waiting 234.0s before retry [Retry 1/5].
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=1.000, LD=3.8707, IO_rank=0, S_rank=7, IO_prob=48.0807%, S_prob=1.9383%
-  Top-1: IO=84.0%, S=0.0%, other=16.0%
-  Top other: [('the', 39), ('me', 3), ('her', 3)]
-
---- Step 100000 ---
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/xet-read-token/f11159b3cfaeaa06f380048a14ab14869f64d95d
-Rate limited. Waiting 232.0s before retry [Retry 1/5].
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3005.21it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.973, LD=3.3084, IO_rank=0, S_rank=5, IO_prob=45.5853%, S_prob=2.1513%
-  Top-1: IO=76.7%, S=0.0%, other=23.3%
-  Top other: [('the', 59), ('them', 10), ('me', 1)]
-
---- Step 200000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3601.15it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=1.000, LD=3.3766, IO_rank=0, S_rank=5, IO_prob=43.5344%, S_prob=2.1341%
-  Top-1: IO=80.3%, S=0.0%, other=19.7%
-  Top other: [('the', 48), ('them', 6), ('his', 4)]
-
---- Step 400000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3317.73it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-  Acc=0.997, LD=3.4303, IO_rank=0, S_rank=6, IO_prob=41.3351%, S_prob=2.0838%
-  Top-1: IO=81.7%, S=0.3%, other=18.0%
-  Top other: [('the', 49), ('them', 3), ('his', 2)]
-
-PART 1 COMPLETE
-
-============================================================
-  PART 2: Mechanistic Deep Dive (10 checkpoints)
-============================================================
-
---- Step 0 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 16661.81it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12 done
-    Layer 8/12 done
-    Layer 12/12 done
-  Base acc: 0.500
-  Top head: L0H4 (delta=-0.0100)
-  Top 5 heads:
-    L0H4: -0.0100
-    L1H9: -0.0100
-    L2H0: -0.0100
-    L2H3: -0.0100
-    L3H0: -0.0100
-  L0H4 attention: IO=0.0516, S1=0.0515, S2=0.0522
-  L0H4 projection: IO=-0.0007, S=-0.0007, diff=0.0001
-
---- Step 100 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3717.14it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12 done
-    Layer 8/12 done
-    Layer 12/12 done
-  Base acc: 0.500
-  Top head: L0H0 (delta=0.0000)
-  Top 5 heads:
-    L0H0: +0.0000
-    L0H1: +0.0000
-    L0H2: +0.0000
-    L0H3: +0.0000
-    L0H4: +0.0000
-  L0H0 attention: IO=0.0410, S1=0.0523, S2=0.0470
-  L0H0 projection: IO=0.0005, S=0.0007, diff=-0.0002
-
---- Step 500 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3523.79it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12 done
-    Layer 8/12 done
-    Layer 12/12 done
-  Base acc: 0.440
-  Top head: L0H10 (delta=-0.0300)
-  Top 5 heads:
-    L0H10: -0.0300
-    L0H11: -0.0200
-    L0H3: -0.0150
-    L0H5: -0.0150
-    L1H2: -0.0150
-  L0H10 attention: IO=0.0643, S1=0.0482, S2=0.0536
-  L0H10 projection: IO=0.0009, S=0.0011, diff=-0.0002
-
---- Step 1000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3494.04it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12 done
-    Layer 8/12 done
-    Layer 12/12 done
-  Base acc: 0.300
-  Top head: L7H3 (delta=-0.0200)
-  Top 5 heads:
-    L7H3: -0.0200
-    L0H10: -0.0150
-    L1H6: -0.0150
-    L0H2: -0.0100
-    L0H3: -0.0100
-  L7H3 attention: IO=0.0060, S1=0.0075, S2=0.1057
-  L7H3 projection: IO=0.0055, S=0.0073, diff=-0.0018
-
---- Step 2000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3517.46it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12 done
-    Layer 8/12 done
-    Layer 12/12 done
-  Base acc: 0.135
-  Top head: L7H8 (delta=-0.0750)
-  Top 5 heads:
-    L7H8: -0.0750
-    L7H5: -0.0400
-    L10H6: -0.0400
-    L1H5: -0.0250
-    L10H4: -0.0250
-  L7H8 attention: IO=0.0130, S1=0.0021, S2=0.0093
-  L7H8 projection: IO=0.0749, S=0.0628, diff=0.0121
-
---- Step 3000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3566.79it/s]
-Exception in thread Thread-auto_conversion:
-Traceback (most recent call last):
-  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
-    response.raise_for_status()
-  File "/venv/main/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
-    raise HTTPStatusError(message, request=request, response=self)
-httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/commits/refs%2Fpr%2F5'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/venv/main/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
-    self.run()
-  File "/venv/main/lib/python3.12/threading.py", line 1012, in run
-    self._target(*self._args, **self._kwargs)
-  File "/venv/main/lib/python3.12/site-packages/transformers/safetensors_conversion.py", line 117, in auto_conversion
-    raise e
-  File "/venv/main/lib/python3.12/site-packages/transformers/safetensors_conversion.py", line 96, in auto_conversion
-    sha = get_conversion_pr_reference(api, pretrained_model_name_or_path, **cached_file_kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/venv/main/lib/python3.12/site-packages/transformers/safetensors_conversion.py", line 69, in get_conversion_pr_reference
-    pr = previous_pr(api, model_id, pr_title, token=token)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/venv/main/lib/python3.12/site-packages/transformers/safetensors_conversion.py", line 16, in previous_pr
-    commits = api.list_repo_commits(model_id, revision=discussion.git_reference, token=token)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
-    return fn(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^
-  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/hf_api.py", line 3837, in list_repo_commits
-    for item in paginate(
-                ^^^^^^^^^
-  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/utils/_pagination.py", line 37, in paginate
-    hf_raise_for_status(r)
-  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 880, in hf_raise_for_status
-    raise _format(HfHubHTTPError, message, response) from e
-huggingface_hub.errors.HfHubHTTPError: (Request ID: Root=1-69e920d9-0f91324357a2be2974bb6b54;e767f33e-6260-495d-ab12-a1d95b1b7745)
-
-429 Too Many Requests: you have reached your 'api' rate limit.
-Retry after 19 seconds (0/500 requests remaining in current 300s window).
-Url: https://huggingface.co/api/models/stanford-crfm/alias-gpt2-small-x21/commits/refs%2Fpr%2F5.
-We had to rate limit your IP (142.115.32.84). To continue using our service, create a HF account or login to your existing account, and make sure you pass a HF_TOKEN if you're using the API.
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12 done
-    Layer 8/12 done
-    Layer 12/12 done
-  Base acc: 0.165
-  Top head: L10H4 (delta=-0.0700)
-  Top 5 heads:
-    L10H4: -0.0700
-    L1H5: -0.0100
-    L1H11: -0.0100
-    L4H8: -0.0100
-    L6H0: -0.0100
-  L10H4 attention: IO=0.3657, S1=0.1885, S2=0.0307
-  L10H4 projection: IO=1.2380, S=0.9042, diff=0.3338
-
---- Step 5000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3697.91it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12 done
-    Layer 8/12 done
-    Layer 12/12 done
-  Base acc: 0.285
-  Top head: L1H5 (delta=-0.0700)
-  Top 5 heads:
-    L1H5: -0.0700
-    L7H3: -0.0500
-    L6H5: -0.0450
-    L10H6: -0.0450
-    L1H11: -0.0400
-  L1H5 attention: IO=0.0048, S1=0.0083, S2=0.0012
-  L1H5 projection: IO=-0.0018, S=-0.0016, diff=-0.0003
-
---- Step 10000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3569.48it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12 done
-    Layer 8/12 done
-    Layer 12/12 done
-  Base acc: 0.585
-  Top head: L1H11 (delta=-0.1150)
-  Top 5 heads:
-    L1H11: -0.1150
-    L7H4: -0.1050
-    L7H0: -0.0950
-    L7H9: -0.0900
-    L8H4: -0.0800
-  L1H11 attention: IO=0.0181, S1=0.0248, S2=0.0071
-  L1H11 projection: IO=0.0466, S=0.0465, diff=0.0002
-
---- Step 100000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3482.85it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12 done
-    Layer 8/12 done
-    Layer 12/12 done
-  Base acc: 0.975
-  Top head: L10H10 (delta=-0.0900)
-  Top 5 heads:
-    L10H10: -0.0900
-    L8H4: -0.0800
-    L6H2: -0.0450
-    L3H6: -0.0300
-    L6H0: -0.0250
-  L10H10 attention: IO=0.0555, S1=0.0519, S2=0.5890
-  L10H10 projection: IO=-0.0389, S=-6.2787, diff=6.2399
-
---- Step 400000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3727.54it/s]
-Loaded pretrained model stanford-crfm/alias-gpt2-small-x21 into HookedTransformer
-    Layer 4/12 done
-    Layer 8/12 done
-    Layer 12/12 done
-  Base acc: 0.995
-  Top head: L10H10 (delta=-0.0850)
-  Top 5 heads:
-    L10H10: -0.0850
-    L8H4: -0.0350
-    L7H11: -0.0250
-    L0H0: +0.0000
-    L0H1: +0.0000
-  L10H10 attention: IO=0.0528, S1=0.0372, S2=0.5787
-  L10H10 projection: IO=-0.0458, S=-1.9349, diff=1.8891
-
-PART 2 COMPLETE
-
-============================================================
-  PART 3: Second Seed (battlestar) — Data Ordering Test
-============================================================
-
---- Step 0 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 14157.11it/s]
-Loaded pretrained model stanford-crfm/battlestar-gpt2-small-x49 into HookedTransformer
-  Acc=0.497, LD=0.0037, pct_S=50.3%
-
---- Step 100 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3110.31it/s]
-Loaded pretrained model stanford-crfm/battlestar-gpt2-small-x49 into HookedTransformer
-  Acc=0.497, LD=-0.0104, pct_S=50.3%
-
---- Step 500 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3380.02it/s]
-Loaded pretrained model stanford-crfm/battlestar-gpt2-small-x49 into HookedTransformer
-  Acc=0.417, LD=-0.2488, pct_S=58.3%
-
---- Step 1000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3037.87it/s]
-Loaded pretrained model stanford-crfm/battlestar-gpt2-small-x49 into HookedTransformer
-  Acc=0.250, LD=-0.9167, pct_S=75.0%
-
---- Step 2000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3863.66it/s]
-Loaded pretrained model stanford-crfm/battlestar-gpt2-small-x49 into HookedTransformer
-  Acc=0.117, LD=-1.7829, pct_S=88.3%
-
---- Step 3000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3633.12it/s]
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/battlestar-gpt2-small-x49/commits/main?p=6&limit=50
-Rate limited. Waiting 11.0s before retry [Retry 1/5].
-Loaded pretrained model stanford-crfm/battlestar-gpt2-small-x49 into HookedTransformer
-  Acc=0.317, LD=-0.9036, pct_S=68.3%
-
---- Step 5000 ---
-HTTP Error 429 thrown while requesting GET https://huggingface.co/api/models/stanford-crfm/battlestar-gpt2-small-x49/xet-read-token/9ce582bbeb430343bbbf020a635672082875ca37
-Rate limited. Waiting 8.0s before retry [Retry 1/5].
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3548.04it/s]
-Loaded pretrained model stanford-crfm/battlestar-gpt2-small-x49 into HookedTransformer
-  Acc=0.513, LD=0.0897, pct_S=48.7%
-
---- Step 10000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3408.29it/s]
-Loaded pretrained model stanford-crfm/battlestar-gpt2-small-x49 into HookedTransformer
-  Acc=0.677, LD=0.4909, pct_S=32.3%
-
---- Step 100000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3565.67it/s]
-Loaded pretrained model stanford-crfm/battlestar-gpt2-small-x49 into HookedTransformer
-  Acc=1.000, LD=3.7641, pct_S=0.0%
-
---- Step 400000 ---
-Loading weights:   0%|                                                                                                            | 0/149 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 149/149 [00:00<00:00, 3393.63it/s]
-Loaded pretrained model stanford-crfm/battlestar-gpt2-small-x49 into HookedTransformer
-  Acc=0.983, LD=3.8015, pct_S=1.7%
-
-PART 3 COMPLETE
-
-============================================================
-  ALL PARTS COMPLETE
-  Total time: 1583 seconds (0.4 hours)
-  Results: results/stanford_gpt2_ioi.json
-============================================================
