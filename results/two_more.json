@@ -1,0 +1,74 @@
+{
+  "volatile_retest": {
+    "step_1600": {
+      "accuracy_n600": 0.2033,
+      "n": 600,
+      "std_err": 0.0164
+    },
+    "step_1650": {
+      "accuracy_n600": 0.1267,
+      "n": 600,
+      "std_err": 0.0136
+    },
+    "step_3300": {
+      "accuracy_n600": 0.1267,
+      "n": 600,
+      "std_err": 0.0136
+    },
+    "step_3700": {
+      "accuracy_n600": 0.4083,
+      "n": 600,
+      "std_err": 0.0201
+    },
+    "step_3800": {
+      "accuracy_n600": 0.26,
+      "n": 600,
+      "std_err": 0.0179
+    },
+    "step_4100": {
+      "accuracy_n600": 0.5,
+      "n": 600,
+      "std_err": 0.0204
+    },
+    "step_4300": {
+      "accuracy_n600": 0.2433,
+      "n": 600,
+      "std_err": 0.0175
+    }
+  },
+  "stanford_projections": {
+    "L11H11": {
+      "attn_IO": 0.6374,
+      "attn_S2": 0.043,
+      "proj_IO": -1.3881,
+      "proj_S": -0.2364,
+      "proj_diff": -1.1517,
+      "role": "other"
+    },
+    "L10H10": {
+      "attn_IO": 0.0528,
+      "attn_S2": 0.5787,
+      "proj_IO": -0.0458,
+      "proj_S": -1.9349,
+      "proj_diff": 1.8891,
+      "role": "S-suppressor"
+    },
+    "L10H4": {
+      "attn_IO": 0.3936,
+      "attn_S2": 0.0252,
+      "proj_IO": 1.5356,
+      "proj_S": 0.7376,
+      "proj_diff": 0.798,
+      "role": "IO-copier (name mover)"
+    },
+    "L10H7": {
+      "attn_IO": 0.3595,
+      "attn_S2": 0.0226,
+      "proj_IO": 0.9757,
+      "proj_S": 0.4349,
+      "proj_diff": 0.5407,
+      "role": "IO-copier (name mover)"
+    },
+    "suppression_to_copying_ratio": 1.64
+  }
+}
