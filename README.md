@@ -4,7 +4,6 @@ Investigating when and how the Indirect Object Identification (IOI) circuit emer
 
 **Author:** Tejas Dahiya, UW-Madison
 **Advisor:** Cole Blondin
-**PI:** Sean
 **Targets:** ICML 2026 Mech Interp Workshop / EMNLP 2026
 
 ## Summary
