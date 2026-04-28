@@ -371,6 +371,25 @@ Wang et al. attention-based classification is more robust and correctly identifi
 
 ---
 
+## Theoretical Perspective: Why S-Suppression?
+
+Across all 5 seeds and both model families, S-inhibition consistently dominates IO-copying by 2-10x. We conjecture this is because repetition detection is informationally cheaper than unique-token identification.
+
+**S-suppression requires duplicate detection.** The head compares two positions: "is the token at S2 the same as at S1?" This is a binary matching operation requiring O(1) bits of mutual information between positions. L1H8 implements exactly this -- attending 91.4% from S2 to S1 -- and it appears early in training (step 1000).
+
+**IO-copying requires unique-token identification.** The head must determine: "which name is NOT repeated?" This requires first knowing which name IS repeated (i.e., duplicate detection must happen first), then selecting the exception from a vocabulary of 50,257 tokens. This requires O(log V) bits.
+
+**The pipeline architecture confirms the dependency.** In every model we examined:
+1. Duplicate-token heads (L1H8) emerge first and sit in early layers
+2. S-inhibition heads read their output and suppress the repeated name
+3. IO-copying heads contribute less because the problem is already mostly solved by suppression
+
+**S-suppression is not just easier -- it is sufficient.** If the repeated name is suppressed, the non-repeated name wins by default without needing an explicit copying mechanism. The 10:1 ratio (Pythia) and 2.4:1 ratio (Stanford) reflect this: the circuit invests most of its capacity in the cheaper, sufficient strategy.
+
+This explains both the universality of S-inhibition dominance and the degeneracy of circuit implementation. Any head can learn duplicate detection and S-suppression. The architecture does not need a specific head for this role -- it needs any head willing to do the cheap computation first.
+
+---
+
 ## Limitations
 
 1. All models are 124M-1B, English web text. Larger models untested.
