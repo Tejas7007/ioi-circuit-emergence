@@ -19,7 +19,7 @@ We track IOI circuit formation across 18 independent training runs spanning two 
 
 3. **Recovery is noisy, not a phase transition.** Dense checkpoints reveal repeated circuit formation and collapse during recovery.
 
-4. **The circuit implementation is seed-dependent.** Retraining with a different seed produces a completely different circuit: different heads, different mechanisms (direct S2 attention vs indirect relay), even opposite roles for the same head. The architecture demands S-inhibition; it does not care which head provides it.
+4. **The circuit implementation is seed-dependent.** Retraining and PolyPythias analysis shows every seed produces a different circuit (n=5 seeds, 5 different heads, 0 repeats): different heads, different mechanisms (direct S2 attention vs indirect relay), even opposite roles for the same head. The architecture demands S-inhibition; it does not care which head provides it.
 
 ---
 
@@ -324,6 +324,22 @@ Recovery exceeding 100% means restoring S1 activations IMPROVES over the clean b
 
 ![Figure 16](figures/fig16_causal_tracing.png)
 
+### Finding 20: Circuit Degeneracy Confirmed at n=5
+
+Testing PolyPythias seeds 1, 3, and 5 at step 143000 reveals that every seed selects a different dominant head. Combined with the original and retrained models, we have n=5 with zero repeats:
+
+| Seed | Dominant Head | Layer Depth | S2 Attention | Proj Diff | Mechanism |
+|------|--------------|-------------|-------------|-----------|-----------|
+| original (1234) | L8H9 | 67% | 92.5% | +5.74 | Direct S2-suppression |
+| seed1 | L7H6 | 58% | 77.8% | +5.83 | Direct S2-suppression |
+| seed3 | L7H11 | 58% | 85.4% | +4.35 | Direct S2-suppression |
+| seed5 | L6H8 | 50% | 30.6% | +0.02 | Indirect relay |
+| retrained (42) | L2H6 | 17% | 0.3% | ~0 | Indirect relay |
+
+Two mechanisms: direct S2-suppression (3/5 seeds) where the head attends to S2 and writes strong negative S, and indirect relay (2/5 seeds) where the head routes information through downstream layers with near-zero direct projection. Both produce the same behavioral outcome.
+
+![Figure 19](figures/fig19_circuit_degeneracy.png)
+
 ---
 
 ## Part IV: Methodology
@@ -359,7 +375,7 @@ Wang et al. attention-based classification is more robust and correctly identifi
 
 1. All models are 124M-1B, English web text. Larger models untested.
 2. S-suppression ratio varies across families (10:1 vs 2.4:1). Unknown why.
-3. Only two seeds for retraining comparison (1234 and 42).
+3. Five seeds tested (original, retrained, seed1, seed3, seed5). More would strengthen the degeneracy claim.
 4. No theoretical explanation for why S-suppression is preferred or why the solution is degenerate.
 5. L9H1/L11H11 negative name movers replicate cross-family but their role is not fully understood.
 6. Retrained model reaches 88% at step 10K vs original's 100%. May need more training.
@@ -423,6 +439,7 @@ results/
 
   # PolyPythias
   polypythias_ioi.json
+  polypythias_mechanism.json
 
   # Retraining (seed=42)
   retrain_training_log.json
@@ -448,6 +465,7 @@ figures/
   fig16_causal_tracing               # Activation patching
   fig17_path_patching                # L2H6 downstream dependencies
   fig18_original_vs_retrained        # seed=1234 vs seed=42 comparison
+  fig19_circuit_degeneracy           # 5 seeds, 5 heads, 2 mechanisms
 ```
 
 ## Retrained Model Checkpoints
