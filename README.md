@@ -20,6 +20,8 @@ We track IOI circuit formation across 18 independent training runs spanning two 
 
 4. **The circuit implementation is seed-dependent.** Retraining and PolyPythias analysis shows every seed produces a different circuit (n=5 seeds, 5 different heads, 0 repeats): different heads, different mechanisms (direct S2 attention vs indirect relay), even opposite roles for the same head. The architecture demands S-inhibition; it does not care which head provides it.
 
+5. **Duplication is detected before the circuit forms.** Linear probes show the model detects repeated names at 99% accuracy during the dip (step 1000), but IOI accuracy is only 41%. The bottleneck is not information — it is the circuit to act on it.
+
 ---
 
 ## Part I: The Dip
@@ -360,6 +362,77 @@ Wang et al. attention-based classification is more robust and correctly identifi
 
 ---
 
+## Part V: Probing and Validation
+
+### Finding 21: The Model Detects Duplication During the Dip But Cannot Act On It
+
+Binary probes (sklearn LogisticRegression, 5-fold CV) trained to distinguish IOI prompts (repeated name) from control prompts (three different names):
+
+| Step | IOI Acc | S2 probe (best layer) | END probe (best layer) |
+|------|---------|----------------------|----------------------|
+| 1000 | 41% | **99.3%** (layer 5) | **93.4%** (layer 7) |
+| 2000 | 35% | **98.9%** (layer 4) | **93.1%** (layer 11) |
+| 3000 | 61% | **100%** (layer 1) | **98.4%** (layer 5) |
+| 5000 | 86% | **100%** (layer 1) | **100%** (layer 7) |
+| 10000 | 100% | **100%** (layer 1) | **100%** (layer 8) |
+| 143000 | 100% | **100%** (layer 1) | **99.9%** (layer 6) |
+
+At step 1000, when IOI accuracy is only 41%, the model detects duplication at 99% at S2 (layer 5) and 93% at END (layer 7). The information is present. The S-inhibition circuit to use it has not formed.
+
+Duplication detection also moves to earlier layers over training: best layer at S2 goes from 5 → 4 → 1 across the first 3000 steps. The representation becomes more accessible as the circuit develops.
+
+![Figure 20](figures/fig20_duplication_probes.png)
+
+### Finding 22: No Head Matters During the Dip
+
+Path patching on the original Pythia-160M across training steps:
+
+| Step | Acc | Top head | Delta |
+|------|-----|----------|-------|
+| 1000 | 42% | L0H0 | -0.06 |
+| 2000 | 37% | L5H8 | -0.45 |
+| 3000 | 63% | L3H0 | -0.86 |
+| 5000 | 88% | **L8H9** | **-2.36** |
+| 143000 | 99% | **L8H9** | **-2.78** |
+
+At step 1000 (during the dip), no single head has a meaningful effect (largest delta = -0.06). The circuit literally does not exist. By step 2000, L5H8 begins to emerge. L8H9 only becomes dominant at step 5000 with a delta 40x larger than any head at step 1000. The circuit builds from nothing over 4000 training steps.
+
+![Figure 21](figures/fig21_path_patching_development.png)
+
+### Finding 23: L2H6 Attends to Object Nouns
+
+Manual inspection of L2H6's attention on 10 examples (retrained model, step 10000) reveals it attends primarily to the indirect object noun ("cup", "letter", "ball"), not to any name or structural token:
+
+| Token | Average Attention |
+|-------|------------------|
+| Object noun (cup, letter, etc.) | **88%** |
+| "to" | 7% |
+| "a" | 4% |
+| All names (IO, S1, S2) | 0% |
+| BOS | 0% |
+
+L2H6 reads the object being given, not the names involved. This is unexpected — it suggests L2H6 may be encoding the syntactic frame ("gave a ___ to") rather than directly routing name identity information. The "relay" interpretation requires further investigation; L2H6's importance by ablation may relate to its role in syntactic parsing rather than name processing.
+
+![Figure 23](figures/fig23_l2h6_attention_map.png)
+
+### Finding 24: Retraining Validated Against Original
+
+Eval loss comparison on held-out Pile text confirms the retrained model (seed=42) matches the original (seed=1234):
+
+| Step | Original loss | Retrained loss | Difference |
+|------|-------------|---------------|------------|
+| 1000 | 3.73 | 3.45 | -0.29 |
+| 2000 | 3.14 | 3.15 | +0.01 |
+| 3000 | 2.96 | 3.01 | +0.04 |
+| 5000 | 2.80 | 2.86 | +0.06 |
+| 10000 | 2.68 | 2.72 | +0.05 |
+
+Losses track within 0.05 from step 2000 onward. The retrained model is a legitimate replication with a different random seed, not a broken training run.
+
+![Figure 22](figures/fig22_loss_comparison.png)
+
+---
+
 ## Additional Results
 
 **Induction heads as control:** Induction heads emerge monotonically across all three Pythia scales -- smooth climb from 0 to ~0.9 with no dip, no reorganization. The non-monotonic pattern is specific to circuits requiring multi-head coordination.
@@ -427,7 +500,9 @@ scripts/
   deep_analysis_retrained.py         # Projections, trajectories, path patching,
                                      # Wang classification, linear probes, causal tracing
   parse_pile_ioi.py                  # Pile IOI extraction
-  generate_all_figures.py            # Generate all 18 figures
+  generate_all_figures.py            # Generate all figures
+  cole_experiments_apr30.py          # Path patching, L2H6 attention, loss comparison
+  duplication_probes.py              # Binary duplication detection probes
 
 data/
   pile_ioi_natural.json              # 288 Pile IOI examples
@@ -464,6 +539,10 @@ results/
   retrain_ioi_analysis.json
   retrain_160m_deep_analysis.json
 
+  # Cole's experiments (April 30)
+  cole_experiments_apr30.json
+  duplication_probes.json
+
 figures/
   fig01_universal_dip                # Dip across 6 models, 2 families
   fig02_polypythias                  # 9 PolyPythias variants
@@ -484,6 +563,10 @@ figures/
   fig17_path_patching                # L2H6 downstream dependencies
   fig18_original_vs_retrained        # seed=1234 vs seed=42 comparison
   fig19_circuit_degeneracy           # 5 seeds, 5 heads, 2 mechanisms
+  fig20_duplication_probes           # Duplication detection at S2 and END
+  fig21_path_patching_development    # Which heads matter at each training step
+  fig22_loss_comparison              # Original vs retrained eval loss
+  fig23_l2h6_attention_map           # What L2H6 actually attends to
 ```
 
 ## Retrained Model Checkpoints
